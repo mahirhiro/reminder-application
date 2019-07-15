@@ -4,7 +4,10 @@ import model.App;
 import view.buttons.*;
 
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -39,7 +42,7 @@ public class Frame extends JFrame {
 
         jmb.add(file);
         jmb.add(Box.createHorizontalGlue());
-        
+
 
         JToolBar jtb = new JToolBar();
         jtb.setFloatable(false);
@@ -57,6 +60,7 @@ public class Frame extends JFrame {
         String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
         JLabel label = new JLabel(date,SwingConstants.RIGHT);
         jmb.add(label,BorderLayout.NORTH);
+
 
 
 

@@ -17,7 +17,7 @@ public class SaveButton extends JMenuItem {
         setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK));
         setToolTipText("Save");
         setIconTextGap (-10);
-        setPreferredSize(new Dimension(100,30));
+        setPreferredSize(new Dimension(100,20));
     }
 
     public SaveButton(App application, AppPanel panel) {

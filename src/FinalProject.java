@@ -428,7 +428,7 @@ public class FinalProject extends JFrame {
         javax.swing.Timer t = new javax.swing.Timer(1000,new Listener());
         t.start();
     }
-    class Listener implements ActionListener{
+    public class Listener implements ActionListener{
         public void actionPerformed(ActionEvent e){
             Calendar rightnow = Calendar.getInstance();
             int hour = rightnow.get(Calendar.HOUR_OF_DAY);

@@ -3,6 +3,7 @@ package view;
 import model.App;
 
 import javax.swing.*;
+import java.awt.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Observable;
@@ -18,6 +19,7 @@ public class AppPanel extends JPanel implements Observer {
         setFocusable(true);
         application.addObserver(this);
         setVisible(true);
+        setBackground(Color.BLACK);
 
     }
 
