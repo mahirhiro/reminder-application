@@ -5,7 +5,7 @@ import java.util.Observer;
 
 public class App extends Observable implements Observer {
 
-    private void refresh(){
+    public void refresh(){
         setChanged();
         notifyObservers();
     }

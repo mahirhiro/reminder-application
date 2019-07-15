@@ -22,11 +22,10 @@ public class LoadAction extends AbstractAction implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        System.out.println("Loading");
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        System.out.println("Loading");
     }
 }

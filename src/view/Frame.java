@@ -1,13 +1,13 @@
 package view;
 
 import model.App;
-import view.buttons.ExitButton;
-import view.buttons.LoadButton;
-import view.buttons.SaveButton;
+import view.buttons.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import static java.util.Calendar.*;
 
@@ -25,6 +25,7 @@ public class Frame extends JFrame {
         this.setResizable(false);
 
         AppPanel panel = new AppPanel(application);
+        panel.setLayout(new BorderLayout());
 
         JMenuBar jmb = new JMenuBar();
         JMenu file = new JMenu("File");
@@ -37,8 +38,25 @@ public class Frame extends JFrame {
         file.add(new ExitButton(application));
 
         jmb.add(file);
+        jmb.add(Box.createHorizontalGlue());
+        
+
+        JToolBar jtb = new JToolBar();
+        jtb.setFloatable(false);
+        jtb.setRollover(true);
+        jtb.add(new AddTaskButton(application,panel));
+        jtb.addSeparator();
+        jtb.add(new EditTaskButton(application,panel));
+        jtb.addSeparator();
+        jtb.add(new DeleteTaskButton(application,panel));
+
+        this.add(jtb, BorderLayout.PAGE_START);
 
 
+        //String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+        String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+        JLabel label = new JLabel(date,SwingConstants.RIGHT);
+        jmb.add(label,BorderLayout.NORTH);
 
 
 
