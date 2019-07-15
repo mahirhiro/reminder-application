@@ -1,5 +1,8 @@
 # Compiled class file
 *.class
+.DS_Store
+*.idea
+reminder-application.iml
 
 # Log file
 *.log
