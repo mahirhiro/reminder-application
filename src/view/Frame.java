@@ -62,6 +62,21 @@ public class Frame extends JFrame {
         jmb.add(label,BorderLayout.NORTH);
 
 
+        JPanel leftPanel = new JPanel();
+        Box leftPanelItems = Box.createVerticalBox();
+        DefaultListModel listboxModel = new DefaultListModel();
+        JList listbox = new JList(listboxModel);
+
+        listbox.setFont(new Font("Arial",Font.BOLD,32));
+        listbox.setSize(new Dimension(400,693));
+        listbox.setVisibleRowCount(12);
+
+        leftPanelItems.add(listbox);
+        panel.add(leftPanelItems);
+        for(int i = 0; i < 3; i++) {
+            listboxModel.addElement("Yo");
+        }
+        this.add(leftPanel);
 
 
 

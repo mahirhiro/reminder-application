@@ -19,7 +19,7 @@ public class AppPanel extends JPanel implements Observer {
         setFocusable(true);
         application.addObserver(this);
         setVisible(true);
-        setBackground(Color.BLACK);
+        //setBackground(Color.BLACK);
 
     }
 
