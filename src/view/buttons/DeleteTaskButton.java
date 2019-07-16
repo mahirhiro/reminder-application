@@ -16,7 +16,8 @@ public class DeleteTaskButton extends JMenuItem {
         setHorizontalTextPosition(AbstractButton.CENTER);
         setToolTipText("Delete a Task");
         setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, InputEvent.CTRL_DOWN_MASK));
-        setPreferredSize(new Dimension(100,20));
+        setPreferredSize(new Dimension(140,20));
+        setIconTextGap (-10);
     }
 
     public DeleteTaskButton(App application, AppPanel panel){

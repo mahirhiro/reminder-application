@@ -17,6 +17,7 @@ public class EditTaskButton extends JMenuItem{
         setToolTipText("Edit a Task");
         setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, InputEvent.CTRL_DOWN_MASK));
         setPreferredSize(new Dimension(100,20));
+        setIconTextGap (-10);
     }
 
     public EditTaskButton(App application, AppPanel panel){

@@ -1,14 +1,8 @@
-import java.util.*;
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -16,39 +10,23 @@ import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.*;
-import java.text.*;
-import java.util.Date;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import java.awt.Color;
 import javax.swing.border.TitledBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JMenu;
-import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
-
-import java.awt.Font;
-import java.awt.JobAttributes;
-
-
 import javax.swing.JFileChooser;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.BevelBorder;
 import javax.swing.JTable;
 import javax.swing.UIManager;
 import javax.swing.JScrollPane;
-import javax.management.modelmbean.ModelMBean;
-import javax.swing.AbstractButton;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.io.BufferedWriter;
@@ -57,18 +35,14 @@ import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Scanner;
-import java.util.Timer;
-import java.awt.event.ActionEvent;
 import javax.swing.JMenuItem;
-import javax.swing.JTextArea;
+
 
 public class FinalProject extends JFrame {
-
     String evntName,date,time;
+
     private JPanel minPanel;
     private JTextField txtEvent;
     private JTable table;
@@ -107,6 +81,21 @@ public class FinalProject extends JFrame {
         });
     }
 
+//    public class Listener implements ActionListener{
+//        public void actionPerformed(ActionEvent e){
+//            Calendar rightnow = Calendar.getInstance();
+//            int hour = rightnow.get(Calendar.HOUR_OF_DAY);
+//            if(hour>12){
+//                hour = hour %12;
+//            }
+//            if(hour ==0 || hour==24){
+//                hour = 12;
+//            }
+//            int min = rightnow.get(Calendar.MINUTE);
+//            int sec = rightnow.get(Calendar.SECOND);
+//            lblTimer.setText(""+hour+":"+min+":"+sec);
+//
+//        }
     /**
      * Create the frame.
      */
@@ -126,10 +115,10 @@ public class FinalProject extends JFrame {
         final JMenuItem itmExit = new JMenuItem("Exit");
         itmExit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-                if(arg0.getSource()== itmExit){
+                if (arg0.getSource() == itmExit) {
                     int x = JOptionPane.showConfirmDialog(
                             rootPane, "Are you sure?", "Confirmation", JOptionPane.OK_CANCEL_OPTION);
-                    if(x==0){
+                    if (x == 0) {
                         System.out.println(x);
                         System.exit(0);
                     }
@@ -146,14 +135,13 @@ public class FinalProject extends JFrame {
                 filter = new FileNameExtensionFilter("*.txt", new String[]{"txt"});
                 fc.addChoosableFileFilter(filter);
                 int option = fc.showSaveDialog(rootPane);
-                if(option == JFileChooser.APPROVE_OPTION){
+                if (option == JFileChooser.APPROVE_OPTION) {
                     directory = fc.getCurrentDirectory();
 
                     file = fc.getSelectedFile();
-                    try{
+                    try {
                         writeAll();
-                    }
-                    catch(IOException ex){
+                    } catch (IOException ex) {
                         ex.printStackTrace();
                     }
                 }
@@ -163,23 +151,21 @@ public class FinalProject extends JFrame {
 
             private void writeAll() throws IOException {
                 BufferedWriter bw = null;
-                try{
-                    bw = new BufferedWriter(new FileWriter(file+getExtention(),false));
+                try {
+                    bw = new BufferedWriter(new FileWriter(file + getExtention(), false));
 
-                    for(int i=0;i<table_1.getRowCount();i++){
-                        for(int j=0;j<table_1.getColumnCount();j++){
-                            bw.write((String)table_1.getModel().getValueAt(i,j)+" , ");
+                    for (int i = 0; i < table_1.getRowCount(); i++) {
+                        for (int j = 0; j < table_1.getColumnCount(); j++) {
+                            bw.write((String) table_1.getModel().getValueAt(i, j) + " , ");
                         }
                         bw.write("\r\n");
                     }
                     bw.write("\n");
-                    JOptionPane.showMessageDialog(rootPane,"Data saved !");
-                }
-                catch(Exception e){
+                    JOptionPane.showMessageDialog(rootPane, "Data saved !");
+                } catch (Exception e) {
                     e.printStackTrace();
-                }
-                finally{
-                    if(bw!=null){
+                } finally {
+                    if (bw != null) {
                         bw.close();
                     }
                 }
@@ -196,8 +182,8 @@ public class FinalProject extends JFrame {
 
         mnFile.add(itmSave);
         mnFile.add(itmExit);
-        itmExit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X,InputEvent.CTRL_MASK));
-        itmSave.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,InputEvent.CTRL_MASK));
+        itmExit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.CTRL_MASK));
+        itmSave.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_MASK));
 
 
         JMenu mnHome = new JMenu("Home");
@@ -211,7 +197,7 @@ public class FinalProject extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 JFrame f = new JFrame("About");
                 f.setVisible(true);
-                f.setSize(300,300);
+                f.setSize(300, 300);
                 f.setLocationRelativeTo(null);
                 f.getContentPane().setLayout(new FlowLayout());
                 JLabel lblabout1 = new JLabel();
@@ -233,8 +219,8 @@ public class FinalProject extends JFrame {
         JMenuItem mntmContact = new JMenuItem("Contact");
         mnHelp.add(mntmContact);
         mnHelp.add(itmAbout);
-        itmAbout.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A,InputEvent.CTRL_MASK));
-        itmOpen.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O,InputEvent.CTRL_MASK));
+        itmAbout.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.CTRL_MASK));
+        itmOpen.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_MASK));
 
         minPanel = new JPanel();
         minPanel.setForeground(Color.LIGHT_GRAY);
@@ -270,14 +256,12 @@ public class FinalProject extends JFrame {
         creatEventPanel.add(lblDate);
 
 
-
         JLabel lblTime = new JLabel("Time");
         lblTime.setForeground(Color.WHITE);
         lblTime.setFont(new Font("Arial Black", Font.PLAIN, 12));
         lblTime.setBounds(10, 137, 46, 29);
         creatEventPanel.add(lblTime);
         //DefaultTableModel model = new DefaultTableModel();
-
 
 
         JButton btnNewButton = new JButton("Save");
@@ -288,13 +272,12 @@ public class FinalProject extends JFrame {
                 String event = txtEvent.getText();
                 String time = txtTime.getText();
 
-                if(event.isEmpty()){
+                if (event.isEmpty()) {
                     JOptionPane.showMessageDialog(rootPane, "Please Enter An Event.");
                     txtEvent.requestFocus();
-                }
-                else{
-                    DefaultTableModel model = (DefaultTableModel)table_1.getModel();
-                    model.addRow(new Object[]{event,date,time});
+                } else {
+                    DefaultTableModel model = (DefaultTableModel) table_1.getModel();
+                    model.addRow(new Object[]{event, date, time});
                 }
             }
         });
@@ -321,21 +304,20 @@ public class FinalProject extends JFrame {
         creatEventPanel.add(btnNewButton_1);
         btnNewButton_1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-                DefaultTableModel model = (DefaultTableModel)table_1.getModel();
-                model.setValueAt(txtEvent.getText(),table_1.getSelectedRow(),0);
+                DefaultTableModel model = (DefaultTableModel) table_1.getModel();
+                model.setValueAt(txtEvent.getText(), table_1.getSelectedRow(), 0);
                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                model.setValueAt(txtTime.getText(),table_1.getSelectedRow(),2);
+                model.setValueAt(txtTime.getText(), table_1.getSelectedRow(), 2);
             }
         });
 
-
+        JScrollPane scrollPane = new JScrollPane();
         JPanel recentEventPanel = new JPanel();
         recentEventPanel.setBackground(Color.DARK_GRAY);
         recentEventPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Recent Events", TitledBorder.CENTER, TitledBorder.TOP, null, Color.ORANGE));
         recentEventPanel.setBounds(299, 24, 462, 295);
         minPanel.add(recentEventPanel);
 
-        JScrollPane scrollPane = new JScrollPane();
 
         JPanel panel = new JPanel();
         panel.setBackground(Color.DARK_GRAY);
@@ -360,9 +342,9 @@ public class FinalProject extends JFrame {
         table_1 = new JTable();
         table_1.setFont(new Font("Tahoma", Font.BOLD, 12));
         table_1.setModel(new DefaultTableModel(
-                new Object[][] {
+                new Object[][]{
                 },
-                new String[] {
+                new String[]{
                         "EVENT", "DATE", "TIME"
                 }
         ));
@@ -383,16 +365,14 @@ public class FinalProject extends JFrame {
         JButton btnNewButton_3 = new JButton("Delete");
         btnNewButton_3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-                DefaultTableModel model  = (DefaultTableModel)table_1.getModel();
-                if(table_1.getSelectedRow()==-1){
-                    if(table_1.getRowCount()==0){
+                DefaultTableModel model = (DefaultTableModel) table_1.getModel();
+                if (table_1.getSelectedRow() == -1) {
+                    if (table_1.getRowCount() == 0) {
                         JOptionPane.showMessageDialog(rootPane, "No data to be deleted.!");
-                    }
-                    else{
+                    } else {
                         JOptionPane.showMessageDialog(rootPane, "You must select an item.!");
                     }
-                }
-                else{
+                } else {
                     model.removeRow(table_1.getSelectedRow());
                 }
             }
@@ -423,27 +403,12 @@ public class FinalProject extends JFrame {
         lblTimer.setForeground(Color.GREEN);
         lblTimer.setBounds(0, 0, 279, 56);
         panel_1.add(lblTimer);
-
+    }
         //--------------clock---------------
-        javax.swing.Timer t = new javax.swing.Timer(1000,new Listener());
-        t.start();
-    }
-    public class Listener implements ActionListener{
-        public void actionPerformed(ActionEvent e){
-            Calendar rightnow = Calendar.getInstance();
-            int hour = rightnow.get(Calendar.HOUR_OF_DAY);
-            if(hour>12){
-                hour = hour %12;
-            }
-            if(hour ==0 || hour==24){
-                hour = 12;
-            }
-            int min = rightnow.get(Calendar.MINUTE);
-            int sec = rightnow.get(Calendar.SECOND);
-            lblTimer.setText(""+hour+":"+min+":"+sec);
+//        javax.swing.Timer t = new javax.swing.Timer(1000,new Listener());
+//        t.start();
 
-        }
-    }
+
     private void clear(){
         DefaultTableModel model = (DefaultTableModel) table_1.getModel();
         if(table_1.getRowCount()>0){

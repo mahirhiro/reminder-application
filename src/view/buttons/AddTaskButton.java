@@ -16,6 +16,7 @@ public class AddTaskButton extends JMenuItem {
         setToolTipText("Add a Task");
         setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.CTRL_DOWN_MASK));
         setPreferredSize(new Dimension(100,20));
+        setIconTextGap (-10);
     }
 
     public AddTaskButton(App application, AppPanel panel){
