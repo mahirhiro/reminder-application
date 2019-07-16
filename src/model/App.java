@@ -1,9 +1,13 @@
 package model;
 
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.util.Observable;
 import java.util.Observer;
 
 public class App extends Observable implements Observer {
+
+
 
     public int getPriority() {
         return priority;
@@ -60,6 +64,7 @@ public class App extends Observable implements Observer {
     public void update(Observable o, Object arg) {
         refresh();
     }
+
 
 
 }

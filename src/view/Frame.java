@@ -1,6 +1,8 @@
 package view;
 
 import model.App;
+import model.Obj;
+import model.SimpleModel;
 import view.buttons.*;
 
 import javax.swing.*;
@@ -9,6 +11,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Vector;
 
 import static java.awt.Color.DARK_GRAY;
 import static java.awt.Color.white;
@@ -18,6 +21,8 @@ import static javax.swing.BoxLayout.X_AXIS;
 public class Frame extends JFrame {
 
     private App application;
+    private  Obj obj;
+    private SimpleModel sm;
 
     public Frame(App application) {
         this.application = application;
@@ -26,7 +31,7 @@ public class Frame extends JFrame {
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setPreferredSize(new Dimension(400,600));
 
-        this.setResizable(false);
+        this.setResizable(true);
 
         AppPanel mainPanel = new AppPanel(application, DARK_GRAY);
         mainPanel.setLayout(null);
@@ -60,20 +65,20 @@ public class Frame extends JFrame {
                                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        JTable table_1 = new JTable();
-        table_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-        table_1.setModel(new DefaultTableModel(
+//        mainPanel.getTable().getColumnModel().getColumn(0).setPreferredWidth(119);
+//        mainPanel.getTable().getColumnModel().getColumn(1).setPreferredWidth(76);
+        scrollPane.setViewportView(mainPanel.getTable());
+        mainPanel.getTable().setFont(new Font("Tahoma", Font.BOLD, 12));
+        mainPanel.getTable().setModel(new DefaultTableModel(
                 new Object[][]{
                 },
                 new String[]{
                         "            PRIORITY", "EVENT", "DATE"
                 }
         ));
-        table_1.getColumnModel().getColumn(0).setPreferredWidth(119);
-        table_1.getColumnModel().getColumn(1).setPreferredWidth(76);
-        scrollPane.setViewportView(table_1);
         panel2.setLayout(null);
         mainPanel.add(panel2);
+
 
         JMenuBar jmb = new JMenuBar();
         JMenu file = new JMenu("File");
@@ -82,7 +87,7 @@ public class Frame extends JFrame {
 
 
         /* adding the buttons for the 'file' menu */
-        file.add(new SaveButton(application, mainPanel));
+        file.add(new SaveButton(application, mainPanel,obj));
         file.addSeparator();
         file.add(new LoadButton(application, mainPanel));
         file.addSeparator();
@@ -117,14 +122,16 @@ public class Frame extends JFrame {
         JLabel label = new JLabel(date,SwingConstants.LEFT);
         jmb.add(label,BorderLayout.NORTH);
 
+        DefaultTableModel model = (DefaultTableModel) mainPanel.getTable().getModel();
 
 
-
-
+        mainPanel.getModel().addRow(new Object[]{         "              hk", 34, 3});
+        mainPanel.getTable().setModel(mainPanel.getModel());
 
         this.setJMenuBar(jmb);
         this.pack();
         this.setLocationRelativeTo (null); // Center on screen.
         this.setVisible(true);
     }
+
 }

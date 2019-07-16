@@ -261,7 +261,7 @@ public class FinalProject extends JFrame {
         lblTime.setFont(new Font("Arial Black", Font.PLAIN, 12));
         lblTime.setBounds(10, 137, 46, 29);
         creatEventPanel.add(lblTime);
-        //DefaultTableModel model = new DefaultTableModel();
+        DefaultTableModel model = new DefaultTableModel();
 
 
         JButton btnNewButton = new JButton("Save");
@@ -296,20 +296,20 @@ public class FinalProject extends JFrame {
         creatEventPanel.add(txtTime);
         txtTime.setColumns(10);
 
-        JButton btnNewButton_1 = new JButton("Edit");
-        btnNewButton_1.setBackground(Color.LIGHT_GRAY);
-        btnNewButton_1.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
-        btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-        btnNewButton_1.setBounds(81, 194, 89, 23);
-        creatEventPanel.add(btnNewButton_1);
-        btnNewButton_1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent arg0) {
-                DefaultTableModel model = (DefaultTableModel) table_1.getModel();
-                model.setValueAt(txtEvent.getText(), table_1.getSelectedRow(), 0);
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                model.setValueAt(txtTime.getText(), table_1.getSelectedRow(), 2);
-            }
-        });
+//        JButton btnNewButton_1 = new JButton("Edit");
+//        btnNewButton_1.setBackground(Color.LIGHT_GRAY);
+//        btnNewButton_1.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+//        btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+//        btnNewButton_1.setBounds(81, 194, 89, 23);
+//        creatEventPanel.add(btnNewButton_1);
+//        btnNewButton_1.addActionListener(new ActionListener() {
+//            public void actionPerformed(ActionEvent arg0) {
+//                DefaultTableModel model = (DefaultTableModel) table_1.getModel();
+//                model.setValueAt(txtEvent.getText(), table_1.getSelectedRow(), 0);
+//                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+//                model.setValueAt(txtTime.getText(), table_1.getSelectedRow(), 2);
+//            }
+//        });
 
         JScrollPane scrollPane = new JScrollPane();
         JPanel recentEventPanel = new JPanel();
