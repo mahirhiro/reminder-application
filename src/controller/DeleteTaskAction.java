@@ -28,6 +28,7 @@ public class DeleteTaskAction extends AbstractAction implements Observer {
     public void actionPerformed(ActionEvent e) {
         System.out.println("Deleting a Task");
         panel.deleteATask();
+
         application.refresh();
         fixEnabled();
     }

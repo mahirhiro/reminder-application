@@ -72,6 +72,7 @@ public class Frame extends JFrame {
         JMenuBar jmb = new JMenuBar();
         JMenu file = new JMenu("File");
         JMenu edit = new JMenu("Edit");
+        JMenu clear = new JMenu("Clear");
         setJMenuBar(jmb);
 
 
@@ -90,6 +91,7 @@ public class Frame extends JFrame {
 
         jmb.add(file);
         jmb.add(edit);
+        edit.add(new ClearButton(application,mainPanel));
         jmb.add(Box.createHorizontalGlue());
 
 
@@ -101,7 +103,7 @@ public class Frame extends JFrame {
         jtb.addSeparator();
         jtb.add(new EditTaskButton(application,mainPanel));
         jtb.addSeparator();
-        jtb.add(new DeleteTaskButton(application,mainPanel));
+        //jtb.add(new DeleteTaskButton(application,mainPanel));
 
         //this.add(jtb, BorderLayout.PAGE_START);
 
@@ -109,16 +111,13 @@ public class Frame extends JFrame {
         centerRenderer.setHorizontalAlignment( JLabel.CENTER );
         mainPanel.getTable().setDefaultRenderer(Integer.class, centerRenderer);
 
-        mainPanel.getDateChooser().setDateFormatString("MM/dd/yyyy");
+        mainPanel.getDateChooser().setDateFormatString("MM-dd-yyyy");
 
-        //String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
-        String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+        String date = new SimpleDateFormat("MM-dd-yyyy").format(new Date());
         JLabel label = new JLabel(date,SwingConstants.LEFT);
         jmb.add(label,BorderLayout.NORTH);
 
-
-
-        mainPanel.getModel().addRow(new Object[]{ "Go to the gym", 34, 3});
+        //mainPanel.getModel().addRow(new Object[]{ 3, "Gym", date});
         mainPanel.getTable().setModel(mainPanel.getModel());
 
         JTableUtilities.setCellsAlignment(mainPanel.getTable(), SwingConstants.CENTER);

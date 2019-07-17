@@ -20,12 +20,11 @@ public class AddTaskAction extends AbstractAction implements Observer {
         this.application = application;
         this.panel = panel;
         application.addObserver(this);
-        counter++;
         fixEnabled();
     }
 
     private void fixEnabled(){
-        if ( counter > 2) {
+        if ( counter > 14) {
             setEnabled(false);
         } else {
             setEnabled(true);
@@ -36,15 +35,12 @@ public class AddTaskAction extends AbstractAction implements Observer {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        counter++;
         System.out.println("Adding new Task");
         int priority = panel.askPriorityNumber();
-        String s = panel.askForDate();
-
-        System.out.println(s);
-        panel.addData(priority,s);
-
-
-
+        String date = panel.askForDate();
+        String event = panel.askForEvent();
+        panel.addData(priority,date,event);
         fixEnabled();
     }
 

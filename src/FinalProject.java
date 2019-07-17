@@ -36,6 +36,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 import javax.swing.JMenuItem;
 
@@ -417,6 +418,8 @@ public class FinalProject extends JFrame {
             }
         }
     }
+
+
     private void displayInTable() {
         InputStream is = null;
         fc = new JFileChooser(directory);
