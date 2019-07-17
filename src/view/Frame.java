@@ -94,8 +94,6 @@ public class Frame extends JFrame {
         edit.add(new ClearButton(application,mainPanel));
         jmb.add(Box.createHorizontalGlue());
 
-
-
         JToolBar jtb = new JToolBar();
         jtb.setFloatable(false);
         jtb.setRollover(true);

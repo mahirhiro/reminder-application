@@ -78,9 +78,6 @@ public class AppPanel extends JPanel implements Observer {
     }
 
 
-
-
-
     public void addData(int priority,String date,String eventName) {
         model.addRow(new Object[]{ priority, eventName, date});
         model.fireTableDataChanged();
@@ -107,6 +104,20 @@ public class AppPanel extends JPanel implements Observer {
     }
 
 
+    public String askForEvent() {
+        String eventName = null;
+        eventName = JOptionPane.showInputDialog(null,"Enter a name for the event:", "Event Name Input", JOptionPane.INFORMATION_MESSAGE);
+        while (eventName.isEmpty()){
+            try{
+                eventName = JOptionPane.showInputDialog(null,"Enter a name for the event:", "Event Name Input", JOptionPane.INFORMATION_MESSAGE);
+            } catch (NullPointerException e){
+                eventName = null;
+
+            }
+        }
+        return eventName;
+    }
+
     public JTable getTable(){
         return table_1;
     }
@@ -130,23 +141,7 @@ public class AppPanel extends JPanel implements Observer {
     public void saveFileName () {
 
     }
-    private void writeAll () throws IOException {
 
-
-    }
-
-
-    public String askForEvent() {
-        String eventName = null;
-        while (eventName == null){
-            try{
-                eventName = JOptionPane.showInputDialog(null,"Enter a name for the event:", "Event Name Input", JOptionPane.INFORMATION_MESSAGE);
-            } catch (NullPointerException e){
-                eventName = null;
-            }
-        }
-        return eventName;
-    }
 
     public void clearTable() {
         model.setRowCount(0);
@@ -157,24 +152,4 @@ public class AppPanel extends JPanel implements Observer {
         System.out.println("column: " +table_1.getColumnCount() + "\n");
     }
 
-
-    public int Actualrows(DefaultTableModel m) {
-        int row = 0;
-        int i = 0;
-        for (i = 0; i < m.getRowCount(); ++i) {
-
-            try {
-                if (!(m.getValueAt(i, 0).equals("")) && !(m.getValueAt(i, 1).equals(""))
-                        && !(m.getValueAt(i, 2).equals(""))) {
-                    row++;
-                }
-
-            } catch (NullPointerException e) {
-                continue;
-            }
-
-
-        }
-        return row;
-    }
 }
