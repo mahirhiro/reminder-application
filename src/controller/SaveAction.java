@@ -1,7 +1,6 @@
 package controller;
 
 import model.App;
-import model.Obj;
 import view.AppPanel;
 
 import javax.swing.*;
@@ -13,13 +12,12 @@ public class SaveAction extends AbstractAction implements Observer {
 
     private App application;
     private AppPanel panel;
-    private Obj obj;
 
-    public SaveAction(App application, AppPanel panel, Obj obj) {
+
+    public SaveAction(App application, AppPanel panel) {
         super("Save");
         this.application = application;
         this.panel = panel;
-        this.obj = obj;
         application.addObserver(this);
     }
 

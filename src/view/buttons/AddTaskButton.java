@@ -1,7 +1,6 @@
 package view.buttons;
 
 import controller.AddTaskAction;
-import model.App;
 import view.AppPanel;
 
 import javax.swing.*;
@@ -19,8 +18,8 @@ public class AddTaskButton extends JMenuItem {
         setIconTextGap (-10);
     }
 
-    public AddTaskButton(App application, AppPanel panel){
-        super(new AddTaskAction(application, panel));
+    public AddTaskButton(AppPanel panel){
+        super(new AddTaskAction(panel));
         setButtonProperties();
     }
 }

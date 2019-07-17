@@ -1,6 +1,5 @@
 package view.buttons;
 
-import controller.AddTaskAction;
 import controller.EditTaskAction;
 import model.App;
 import view.AppPanel;

@@ -1,7 +1,6 @@
 package view.buttons;
 
 import controller.ExitAction;
-import model.App;
 
 import javax.swing.*;
 import java.awt.event.InputEvent;
@@ -17,8 +16,8 @@ public class ExitButton extends JMenuItem {
         setIconTextGap (-10);
     }
 
-    public ExitButton(App application){
-        super(new ExitAction(application));
+    public ExitButton(){
+        super(new ExitAction());
         setButtonProperties();
     }
 }

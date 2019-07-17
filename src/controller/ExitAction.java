@@ -1,16 +1,12 @@
 package controller;
 
-import model.App;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 
 public class ExitAction extends AbstractAction {
 
-    private App application;
-    public ExitAction(App application) {
+    public ExitAction() {
         super("Exit");
-        this.application = application;
     }
 
     @Override

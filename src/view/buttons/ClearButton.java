@@ -1,12 +1,9 @@
 package view.buttons;
 
 import controller.ClearButtonAction;
-import controller.DeleteTaskAction;
-import model.App;
 import view.AppPanel;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
@@ -21,8 +18,8 @@ public class ClearButton extends JMenuItem {
         setIconTextGap (-10);
     }
 
-    public ClearButton(App application, AppPanel panel){
-        super(new ClearButtonAction(application, panel));
+    public ClearButton(AppPanel panel){
+        super(new ClearButtonAction(panel));
         setButtonProperties();
     }
 }

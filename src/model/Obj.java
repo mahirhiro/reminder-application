@@ -3,9 +3,6 @@ package model;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Observable;
-import java.util.Observer;
 
 public class Obj {
 

@@ -1,25 +1,18 @@
 package controller;
 
-import model.App;
 import view.AppPanel;
-import view.Frame;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
-import java.util.Observable;
-import java.util.Observer;
 
-public class AddTaskAction extends AbstractAction implements Observer {
+public class AddTaskAction extends AbstractAction{
 
-    private App application;
     private AppPanel panel;
     private int counter = 0;
 
-    public AddTaskAction(App application, AppPanel panel) {
+    public AddTaskAction(AppPanel panel) {
         super("Add Task");
-        this.application = application;
         this.panel = panel;
-        application.addObserver(this);
         fixEnabled();
     }
 
@@ -44,8 +37,4 @@ public class AddTaskAction extends AbstractAction implements Observer {
         fixEnabled();
     }
 
-    @Override
-    public void update(Observable o, Object arg) {
-        fixEnabled();
-    }
 }

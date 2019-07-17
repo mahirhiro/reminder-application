@@ -1,13 +1,10 @@
 package view;
 
 import model.App;
-import model.Obj;
-import model.SimpleModel;
 import view.buttons.*;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -16,13 +13,8 @@ import static java.awt.Color.DARK_GRAY;
 
 public class Frame extends JFrame {
 
-    private App application;
-    private  Obj obj;
-    private SimpleModel sm;
-    private JTableUtilities jt;
 
     public Frame(App application) {
-        this.application = application;
         this.setTitle("ToDo List");
 
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -77,13 +69,13 @@ public class Frame extends JFrame {
 
 
         /* adding the buttons for the 'file' menu */
-        file.add(new SaveButton(application, mainPanel,obj));
+        file.add(new SaveButton(application, mainPanel));
         file.addSeparator();
         file.add(new LoadButton(application, mainPanel));
         file.addSeparator();
         file.add(new ExitButton(application));
 
-        edit.add(new AddTaskButton(application,mainPanel));
+        edit.add(new AddTaskButton(mainPanel));
         edit.addSeparator();
         edit.add(new EditTaskButton(application,mainPanel));
         edit.addSeparator();
@@ -91,16 +83,16 @@ public class Frame extends JFrame {
 
         jmb.add(file);
         jmb.add(edit);
-        edit.add(new ClearButton(application,mainPanel));
+        edit.add(new ClearButton(mainPanel));
         jmb.add(Box.createHorizontalGlue());
 
-        JToolBar jtb = new JToolBar();
-        jtb.setFloatable(false);
-        jtb.setRollover(true);
-        jtb.add(new AddTaskButton(application,mainPanel));
-        jtb.addSeparator();
-        jtb.add(new EditTaskButton(application,mainPanel));
-        jtb.addSeparator();
+//        JToolBar jtb = new JToolBar();
+//        jtb.setFloatable(false);
+//        jtb.setRollover(true);
+//        jtb.add(new AddTaskButton(application,mainPanel));
+//        jtb.addSeparator();
+//        jtb.add(new EditTaskButton(application,mainPanel));
+//        jtb.addSeparator();
         //jtb.add(new DeleteTaskButton(application,mainPanel));
 
         //this.add(jtb, BorderLayout.PAGE_START);

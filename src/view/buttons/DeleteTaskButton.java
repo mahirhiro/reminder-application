@@ -1,7 +1,6 @@
 package view.buttons;
 
 import controller.DeleteTaskAction;
-import controller.EditTaskAction;
 import model.App;
 import view.AppPanel;
 

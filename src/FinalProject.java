@@ -36,13 +36,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Scanner;
 import javax.swing.JMenuItem;
 
 
 public class FinalProject extends JFrame {
-    String evntName,date,time;
+    String eventName,date,time;
 
     private JPanel minPanel;
     private JTextField txtEvent;
@@ -133,7 +132,7 @@ public class FinalProject extends JFrame {
                 fc = new JFileChooser(directory);
                 // add file filter
                 FileNameExtensionFilter filter;
-                filter = new FileNameExtensionFilter("*.txt", new String[]{"txt"});
+                filter = new FileNameExtensionFilter("*.txt", "txt");
                 fc.addChoosableFileFilter(filter);
                 int option = fc.showSaveDialog(rootPane);
                 if (option == JFileChooser.APPROVE_OPTION) {
@@ -157,7 +156,7 @@ public class FinalProject extends JFrame {
 
                     for (int i = 0; i < table_1.getRowCount(); i++) {
                         for (int j = 0; j < table_1.getColumnCount(); j++) {
-                            bw.write((String) table_1.getModel().getValueAt(i, j) + " , ");
+                            bw.write(table_1.getModel().getValueAt(i, j) + " , ");
                         }
                         bw.write("\r\n");
                     }

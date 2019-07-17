@@ -5,17 +5,11 @@ import model.App;
 import model.Obj;
 import model.SimpleModel;
 
-import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.io.IOException;
-import java.text.DateFormat;
-import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -57,8 +51,6 @@ public class AppPanel extends JPanel implements Observer {
 
     }
 
-    ;
-
     public DefaultTableModel getModel() {
         return model;
     }
@@ -87,17 +79,17 @@ public class AppPanel extends JPanel implements Observer {
 
     public int askPriorityNumber(){
         int priority = 0;
-        Integer[] nums  = {1,2,3,4,5};
+        Integer[] priorityArrayOptions  = {1,2,3,4,5};
         while (priority == 0){
             try{
                 priority = (int) JOptionPane.showInputDialog(null, "Choose now...",
                         "Choose the priority of the event", JOptionPane.QUESTION_MESSAGE, null, // Use
                         // default
                         // icon
-                        nums, // Array of choices
-                        nums[0]);
+                        priorityArrayOptions, // Array of choices
+                        priorityArrayOptions[0]);
             } catch (NullPointerException e){
-                priority = 0;
+                System.out.println("Null pointer error");
             }
         }
         return priority;
@@ -105,8 +97,9 @@ public class AppPanel extends JPanel implements Observer {
 
 
     public String askForEvent() {
-        String eventName = null;
+        String eventName;
         eventName = JOptionPane.showInputDialog(null,"Enter a name for the event:", "Event Name Input", JOptionPane.INFORMATION_MESSAGE);
+        assert eventName != null;
         while (eventName.isEmpty()){
             try{
                 eventName = JOptionPane.showInputDialog(null,"Enter a name for the event:", "Event Name Input", JOptionPane.INFORMATION_MESSAGE);
