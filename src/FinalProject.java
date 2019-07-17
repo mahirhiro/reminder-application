@@ -296,26 +296,26 @@ public class FinalProject extends JFrame {
         creatEventPanel.add(txtTime);
         txtTime.setColumns(10);
 
-//        JButton btnNewButton_1 = new JButton("Edit");
-//        btnNewButton_1.setBackground(Color.LIGHT_GRAY);
-//        btnNewButton_1.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
-//        btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-//        btnNewButton_1.setBounds(81, 194, 89, 23);
-//        creatEventPanel.add(btnNewButton_1);
-//        btnNewButton_1.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent arg0) {
-//                DefaultTableModel model = (DefaultTableModel) table_1.getModel();
-//                model.setValueAt(txtEvent.getText(), table_1.getSelectedRow(), 0);
-//                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-//                model.setValueAt(txtTime.getText(), table_1.getSelectedRow(), 2);
-//            }
-//        });
+        JButton btnNewButton_1 = new JButton("Edit");
+        btnNewButton_1.setBackground(Color.LIGHT_GRAY);
+        btnNewButton_1.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+        btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+        btnNewButton_1.setBounds(81, 194, 89, 23);
+        creatEventPanel.add(btnNewButton_1);
+        btnNewButton_1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+                DefaultTableModel model = (DefaultTableModel) table_1.getModel();
+                model.setValueAt(txtEvent.getText(), table_1.getSelectedRow(), 0);
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                model.setValueAt(txtTime.getText(), table_1.getSelectedRow(), 2);
+            }
+        });
 
         JScrollPane scrollPane = new JScrollPane();
         JPanel recentEventPanel = new JPanel();
         recentEventPanel.setBackground(Color.DARK_GRAY);
         recentEventPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Recent Events", TitledBorder.CENTER, TitledBorder.TOP, null, Color.ORANGE));
-        recentEventPanel.setBounds(299, 24, 462, 295);
+        recentEventPanel.setBounds(299, 24, 302, 295);
         minPanel.add(recentEventPanel);
 
 
@@ -323,11 +323,11 @@ public class FinalProject extends JFrame {
         panel.setBackground(Color.DARK_GRAY);
         GroupLayout gl_recentEventPanel = new GroupLayout(recentEventPanel);
         gl_recentEventPanel.setHorizontalGroup(
-                gl_recentEventPanel.createParallelGroup(Alignment.LEADING)
+                gl_recentEventPanel.createParallelGroup(Alignment.TRAILING)
                         .addGroup(Alignment.TRAILING, gl_recentEventPanel.createSequentialGroup()
                                 .addGroup(gl_recentEventPanel.createParallelGroup(Alignment.TRAILING)
-                                        .addComponent(panel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
-                                        .addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE))
+                                        .addComponent(panel, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
+                                        .addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE))
                                 .addContainerGap())
         );
         gl_recentEventPanel.setVerticalGroup(
@@ -348,8 +348,8 @@ public class FinalProject extends JFrame {
                         "EVENT", "DATE", "TIME"
                 }
         ));
-        table_1.getColumnModel().getColumn(0).setPreferredWidth(119);
-        table_1.getColumnModel().getColumn(1).setPreferredWidth(76);
+//        table_1.getColumnModel().getColumn(0).setPreferredWidth(119);
+//        table_1.getColumnModel().getColumn(1).setPreferredWidth(76);
         scrollPane.setViewportView(table_1);
         panel.setLayout(null);
 
@@ -402,11 +402,11 @@ public class FinalProject extends JFrame {
         lblTimer.setHorizontalAlignment(SwingConstants.CENTER);
         lblTimer.setForeground(Color.GREEN);
         lblTimer.setBounds(0, 0, 279, 56);
-        panel_1.add(lblTimer);
+        //panel_1.add(lblTimer);
     }
         //--------------clock---------------
-//        javax.swing.Timer t = new javax.swing.Timer(1000,new Listener());
-//        t.start();
+        //javax.swing.Timer t = new javax.swing.Timer(1000,new Listener());
+        //t.start();
 
 
     private void clear(){

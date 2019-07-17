@@ -5,7 +5,10 @@ import model.Obj;
 import model.SimpleModel;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.io.IOException;
 import java.util.Observable;
@@ -53,7 +56,7 @@ public class AppPanel extends JPanel implements Observer {
         while (priority == 0){
             try{
                 priority = (int) JOptionPane.showInputDialog(null, "Choose now...",
-                        "The Choice of a Lifetime", JOptionPane.QUESTION_MESSAGE, null, // Use
+                        "Choose the priority of the event", JOptionPane.QUESTION_MESSAGE, null, // Use
                         // default
                         // icon
                         nums, // Array of choices
@@ -62,13 +65,18 @@ public class AppPanel extends JPanel implements Observer {
                 priority = 0;
             }
         }
-        System.out.println(" yo " + priority);
         return priority;
     }
+    //public
+
+
 
 
 
     private JTable table_1 = new JTable(getModel());
+
+
+
 
 
     public JTable getTable(){

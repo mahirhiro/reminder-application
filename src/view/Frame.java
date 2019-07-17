@@ -4,32 +4,29 @@ import model.App;
 import model.Obj;
 import model.SimpleModel;
 import view.buttons.*;
-
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Vector;
 
 import static java.awt.Color.DARK_GRAY;
-import static java.awt.Color.white;
-import static javax.swing.Box.createRigidArea;
-import static javax.swing.BoxLayout.X_AXIS;
 
 public class Frame extends JFrame {
 
     private App application;
     private  Obj obj;
     private SimpleModel sm;
+    private JTableUtilities jt;
 
     public Frame(App application) {
         this.application = application;
         this.setTitle("ToDo List");
 
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        this.setPreferredSize(new Dimension(400,600));
+        this.setPreferredSize(new Dimension(550,400));
 
         this.setResizable(true);
 
@@ -41,7 +38,7 @@ public class Frame extends JFrame {
         JPanel recentEventPanel = new JPanel();
         recentEventPanel.setBackground(Color.DARK_GRAY);
         recentEventPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Recent Events", TitledBorder.CENTER, TitledBorder.TOP, null, Color.ORANGE));
-        recentEventPanel.setBounds(5, 24, 390, 295);
+        recentEventPanel.setBounds(10, 24, 540, 285);
         mainPanel.add(recentEventPanel);
 
         JPanel panel2 = new JPanel();
@@ -49,11 +46,11 @@ public class Frame extends JFrame {
 
         GroupLayout gl_recentEventPanel = new GroupLayout(recentEventPanel);
         gl_recentEventPanel.setHorizontalGroup(
-                gl_recentEventPanel.createParallelGroup(GroupLayout.Alignment.LEADING)
+                gl_recentEventPanel.createParallelGroup(GroupLayout.Alignment.CENTER)
                         .addGroup(GroupLayout.Alignment.TRAILING, gl_recentEventPanel.createSequentialGroup()
                                 .addGroup(gl_recentEventPanel.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                        .addComponent(panel2, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
-                                        .addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE))
+                                        .addComponent(panel2, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                                        .addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE))
                                 .addContainerGap())
         );
         gl_recentEventPanel.setVerticalGroup(
@@ -65,20 +62,12 @@ public class Frame extends JFrame {
                                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
-//        mainPanel.getTable().getColumnModel().getColumn(0).setPreferredWidth(119);
-//        mainPanel.getTable().getColumnModel().getColumn(1).setPreferredWidth(76);
         scrollPane.setViewportView(mainPanel.getTable());
         mainPanel.getTable().setFont(new Font("Tahoma", Font.BOLD, 12));
-        mainPanel.getTable().setModel(new DefaultTableModel(
-                new Object[][]{
-                },
-                new String[]{
-                        "            PRIORITY", "EVENT", "DATE"
-                }
-        ));
+        mainPanel.getTable().setFillsViewportHeight(true);
+        mainPanel.getTable().setModel(new DefaultTableModel(new Object[][]{}, new String[]{"PRIORITY", "EVENT", "DATE"}));
         panel2.setLayout(null);
         mainPanel.add(panel2);
-
 
         JMenuBar jmb = new JMenuBar();
         JMenu file = new JMenu("File");
@@ -116,18 +105,23 @@ public class Frame extends JFrame {
 
         //this.add(jtb, BorderLayout.PAGE_START);
 
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+        mainPanel.getTable().setDefaultRenderer(Integer.class, centerRenderer);
+
+
 
         //String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
         String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
         JLabel label = new JLabel(date,SwingConstants.LEFT);
         jmb.add(label,BorderLayout.NORTH);
 
-        DefaultTableModel model = (DefaultTableModel) mainPanel.getTable().getModel();
 
 
-        mainPanel.getModel().addRow(new Object[]{         "              hk", 34, 3});
+        mainPanel.getModel().addRow(new Object[]{ "Go to the gym", 34, 3});
         mainPanel.getTable().setModel(mainPanel.getModel());
 
+        JTableUtilities.setCellsAlignment(mainPanel.getTable(), SwingConstants.CENTER);
         this.setJMenuBar(jmb);
         this.pack();
         this.setLocationRelativeTo (null); // Center on screen.
