@@ -28,7 +28,7 @@ public class Frame extends JFrame {
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setPreferredSize(new Dimension(550,400));
 
-        this.setResizable(true);
+        this.setResizable(false);
 
         AppPanel mainPanel = new AppPanel(application, DARK_GRAY);
         mainPanel.setLayout(null);
@@ -65,7 +65,7 @@ public class Frame extends JFrame {
         scrollPane.setViewportView(mainPanel.getTable());
         mainPanel.getTable().setFont(new Font("Tahoma", Font.BOLD, 12));
         mainPanel.getTable().setFillsViewportHeight(true);
-        mainPanel.getTable().setModel(new DefaultTableModel(new Object[][]{}, new String[]{"PRIORITY", "EVENT", "DATE"}));
+        //mainPanel.getTable().setModel(new DefaultTableModel(new Object[][]{}, new String[]{"PRIORITY", "EVENT", "DATE"}));
         panel2.setLayout(null);
         mainPanel.add(panel2);
 
@@ -109,7 +109,7 @@ public class Frame extends JFrame {
         centerRenderer.setHorizontalAlignment( JLabel.CENTER );
         mainPanel.getTable().setDefaultRenderer(Integer.class, centerRenderer);
 
-
+        mainPanel.getDateChooser().setDateFormatString("MM/dd/yyyy");
 
         //String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
         String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());

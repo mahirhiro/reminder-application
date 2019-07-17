@@ -38,9 +38,10 @@ public class AddTaskAction extends AbstractAction implements Observer {
     public void actionPerformed(ActionEvent e) {
         System.out.println("Adding new Task");
         int priority = panel.askPriorityNumber();
-        //int = panel.askForDate();
+        String s = panel.askForDate();
 
-        panel.addData(priority);
+        System.out.println(s);
+        panel.addData(priority,s);
 
 
 

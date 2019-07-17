@@ -1,16 +1,21 @@
 package view;
 
+import com.toedter.calendar.JDateChooser;
 import model.App;
 import model.Obj;
 import model.SimpleModel;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -23,6 +28,29 @@ public class AppPanel extends JPanel implements Observer {
     private DefaultTableModel model;
 
 
+    public void setDateChooser(JDateChooser dateChooser) {
+        this.dateChooser = dateChooser;
+    }
+
+    public JDateChooser getDateChooser() {
+        return dateChooser;
+    }
+
+    private com.toedter.calendar.JDateChooser dateChooser = new com.toedter.calendar.JDateChooser();
+
+
+
+    public String askForDate(){
+        String message ="Choose start date:\n";
+        Object[] params = {message,dateChooser};
+        JOptionPane.showConfirmDialog(null,params,"Start date", JOptionPane.DEFAULT_OPTION);
+
+        String s="";
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        s=sdf.format(((JDateChooser)params[1]).getDate());
+        return s;
+    }
+
     public AppPanel(App application,Color color) {
         this.application = application;
         setOpaque(true);
@@ -30,29 +58,25 @@ public class AppPanel extends JPanel implements Observer {
         application.addObserver(this);
         setVisible(true);
         setBackground(color);
-        model = new DefaultTableModel(new Object[][]{}, new String[]{"            PRIORITY", "EVENT", "DATE"});}
+        model = new DefaultTableModel(new Object[][]{}, new String[]{"PRIORITY", "EVENT", "DATE"});}
 
     public DefaultTableModel getModel() {
         return model;
     }
 
 
-    public void addData(int priority) {
-        model.addRow(new Object[]{ priority, 35, 3});
+    public void addData(int priority,String s) {
+        model.addRow(new Object[]{ priority, 3, s});
         model.fireTableDataChanged();
         table_1.setModel(model);
         System.out.println(model.getRowCount());//returns 1
         System.out.println(model.getColumnCount());
     }
-    public void setModel() {
-        model.addRow(new Object[]{         "              hkdkdvk", 35, 3});
-        repaint();
-    }
 
 
     public int askPriorityNumber(){
         int priority = 0;
-        Integer[] nums  = { 1,2,3,4,5 };
+        Integer[] nums  = {1,2,3,4,5};
         while (priority == 0){
             try{
                 priority = (int) JOptionPane.showInputDialog(null, "Choose now...",
@@ -67,7 +91,6 @@ public class AppPanel extends JPanel implements Observer {
         }
         return priority;
     }
-    //public
 
 
 
