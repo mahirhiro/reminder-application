@@ -5,10 +5,9 @@ import model.App;
 import model.Obj;
 import model.SimpleModel;
 
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import javax.swing.*;
-
 import java.text.SimpleDateFormat;
 import java.util.Observable;
 import java.util.Observer;
@@ -39,7 +38,6 @@ public class AppPanel extends JPanel implements Observer {
         setVisible(true);
         setBackground(color);
         model = new DefaultTableModel(new Object[][]{}, new String[]{"PRIORITY", "EVENT", "DATE"});
-        model.addRow(new Object[]{ 3, "Gym", 5/6/4});
     }
 
     public AppPanel(Color color) {

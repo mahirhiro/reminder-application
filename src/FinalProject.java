@@ -1,48 +1,27 @@
-import java.awt.EventQueue;
-import java.awt.FlowLayout;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import com.toedter.calendar.JDateChooser;
+
+import javax.swing.*;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
-import java.awt.Color;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import java.awt.Font;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.JMenuBar;
-import javax.swing.JOptionPane;
-import javax.swing.JMenu;
-import javax.swing.JTextField;
-import javax.swing.KeyStroke;
-import javax.swing.JFileChooser;
-import javax.swing.border.SoftBevelBorder;
-import javax.swing.border.BevelBorder;
-import javax.swing.JTable;
-import javax.swing.UIManager;
-import javax.swing.JScrollPane;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Scanner;
-import javax.swing.JMenuItem;
-
 
 public class FinalProject extends JFrame {
-    String eventName,date,time;
 
+    String evntName, date, time;
     private JPanel minPanel;
     private JTextField txtEvent;
     private JTable table;
@@ -81,21 +60,6 @@ public class FinalProject extends JFrame {
         });
     }
 
-//    public class Listener implements ActionListener{
-//        public void actionPerformed(ActionEvent e){
-//            Calendar rightnow = Calendar.getInstance();
-//            int hour = rightnow.get(Calendar.HOUR_OF_DAY);
-//            if(hour>12){
-//                hour = hour %12;
-//            }
-//            if(hour ==0 || hour==24){
-//                hour = 12;
-//            }
-//            int min = rightnow.get(Calendar.MINUTE);
-//            int sec = rightnow.get(Calendar.SECOND);
-//            lblTimer.setText(""+hour+":"+min+":"+sec);
-//
-//        }
     /**
      * Create the frame.
      */
@@ -132,7 +96,7 @@ public class FinalProject extends JFrame {
                 fc = new JFileChooser(directory);
                 // add file filter
                 FileNameExtensionFilter filter;
-                filter = new FileNameExtensionFilter("*.txt", "txt");
+                filter = new FileNameExtensionFilter("*.txt", new String[]{"txt"});
                 fc.addChoosableFileFilter(filter);
                 int option = fc.showSaveDialog(rootPane);
                 if (option == JFileChooser.APPROVE_OPTION) {
@@ -156,7 +120,7 @@ public class FinalProject extends JFrame {
 
                     for (int i = 0; i < table_1.getRowCount(); i++) {
                         for (int j = 0; j < table_1.getColumnCount(); j++) {
-                            bw.write(table_1.getModel().getValueAt(i, j) + " , ");
+                            bw.write((String) table_1.getModel().getValueAt(i, j) + " , ");
                         }
                         bw.write("\r\n");
                     }
@@ -255,20 +219,27 @@ public class FinalProject extends JFrame {
         lblDate.setBounds(10, 74, 46, 29);
         creatEventPanel.add(lblDate);
 
+        final JDateChooser dateCh = new JDateChooser();
+        dateCh.setForeground(Color.LIGHT_GRAY);
+        dateCh.setBorder(null);
+        dateCh.setBackground(Color.LIGHT_GRAY);
+        dateCh.setBounds(108, 74, 161, 29);
+        creatEventPanel.add(dateCh);
 
         JLabel lblTime = new JLabel("Time");
         lblTime.setForeground(Color.WHITE);
         lblTime.setFont(new Font("Arial Black", Font.PLAIN, 12));
         lblTime.setBounds(10, 137, 46, 29);
         creatEventPanel.add(lblTime);
-        DefaultTableModel model = new DefaultTableModel();
+        //DefaultTableModel model = new DefaultTableModel();
+
 
 
         JButton btnNewButton = new JButton("Save");
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-
+                String date = dateFormat.format(dateCh.getDate());
                 String event = txtEvent.getText();
                 String time = txtTime.getText();
 
@@ -307,27 +278,29 @@ public class FinalProject extends JFrame {
                 DefaultTableModel model = (DefaultTableModel) table_1.getModel();
                 model.setValueAt(txtEvent.getText(), table_1.getSelectedRow(), 0);
                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                model.setValueAt(dateFormat.format(dateCh.getDate()), table_1.getSelectedRow(), 1);
                 model.setValueAt(txtTime.getText(), table_1.getSelectedRow(), 2);
             }
         });
 
-        JScrollPane scrollPane = new JScrollPane();
+
         JPanel recentEventPanel = new JPanel();
         recentEventPanel.setBackground(Color.DARK_GRAY);
         recentEventPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Recent Events", TitledBorder.CENTER, TitledBorder.TOP, null, Color.ORANGE));
-        recentEventPanel.setBounds(299, 24, 302, 295);
+        recentEventPanel.setBounds(299, 24, 462, 295);
         minPanel.add(recentEventPanel);
 
+        JScrollPane scrollPane = new JScrollPane();
 
         JPanel panel = new JPanel();
         panel.setBackground(Color.DARK_GRAY);
         GroupLayout gl_recentEventPanel = new GroupLayout(recentEventPanel);
         gl_recentEventPanel.setHorizontalGroup(
-                gl_recentEventPanel.createParallelGroup(Alignment.TRAILING)
+                gl_recentEventPanel.createParallelGroup(Alignment.LEADING)
                         .addGroup(Alignment.TRAILING, gl_recentEventPanel.createSequentialGroup()
                                 .addGroup(gl_recentEventPanel.createParallelGroup(Alignment.TRAILING)
-                                        .addComponent(panel, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
-                                        .addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE))
+                                        .addComponent(panel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
+                                        .addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE))
                                 .addContainerGap())
         );
         gl_recentEventPanel.setVerticalGroup(
@@ -348,8 +321,8 @@ public class FinalProject extends JFrame {
                         "EVENT", "DATE", "TIME"
                 }
         ));
-//        table_1.getColumnModel().getColumn(0).setPreferredWidth(119);
-//        table_1.getColumnModel().getColumn(1).setPreferredWidth(76);
+        table_1.getColumnModel().getColumn(0).setPreferredWidth(119);
+        table_1.getColumnModel().getColumn(1).setPreferredWidth(76);
         scrollPane.setViewportView(table_1);
         panel.setLayout(null);
 
@@ -402,13 +375,29 @@ public class FinalProject extends JFrame {
         lblTimer.setHorizontalAlignment(SwingConstants.CENTER);
         lblTimer.setForeground(Color.GREEN);
         lblTimer.setBounds(0, 0, 279, 56);
-        //panel_1.add(lblTimer);
-    }
+        panel_1.add(lblTimer);
+
         //--------------clock---------------
-        //javax.swing.Timer t = new javax.swing.Timer(1000,new Listener());
-        //t.start();
+        javax.swing.Timer t = new javax.swing.Timer(1000, new Listener());
+        t.start();
+    }
 
+    class Listener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            Calendar rightnow = Calendar.getInstance();
+            int hour = rightnow.get(Calendar.HOUR_OF_DAY);
+            if (hour > 12) {
+                hour = hour % 12;
+            }
+            if (hour == 0 || hour == 24) {
+                hour = 12;
+            }
+            int min = rightnow.get(Calendar.MINUTE);
+            int sec = rightnow.get(Calendar.SECOND);
+            lblTimer.setText("" + hour + ":" + min + ":" + sec);
 
+        }
+    }
     private void clear(){
         DefaultTableModel model = (DefaultTableModel) table_1.getModel();
         if(table_1.getRowCount()>0){
@@ -417,8 +406,6 @@ public class FinalProject extends JFrame {
             }
         }
     }
-
-
     private void displayInTable() {
         InputStream is = null;
         fc = new JFileChooser(directory);
