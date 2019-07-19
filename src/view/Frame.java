@@ -73,7 +73,7 @@ public class Frame extends JFrame {
         file.addSeparator();
         file.add(new LoadButton(application, mainPanel));
         file.addSeparator();
-        file.add(new ExitButton(application));
+        file.add(new ExitButton());
 
         edit.add(new AddTaskButton(mainPanel));
         edit.addSeparator();
