@@ -28,8 +28,8 @@ public class EditTaskAction extends AbstractAction implements Observer {
     @Override
     public void actionPerformed(ActionEvent e) {
         System.out.println("Editing a Task");
-        panel.editATask();
-        application.refresh();
+
+
         fixEnabled();
     }
 
