@@ -2,6 +2,7 @@ package view;
 
 import model.App;
 import view.buttons.*;
+
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -101,9 +102,9 @@ public class Frame extends JFrame {
         centerRenderer.setHorizontalAlignment( JLabel.CENTER );
         mainPanel.getTable().setDefaultRenderer(Integer.class, centerRenderer);
 
-        mainPanel.getDateChooser().setDateFormatString("MM-dd-yyyy");
+        mainPanel.getDateChooser().setDateFormatString("MM/dd/yyyy");
 
-        String date = new SimpleDateFormat("MM-dd-yyyy").format(new Date());
+        String date = new SimpleDateFormat("MM/dd/yyyy").format(new Date());
         JLabel label = new JLabel(date,SwingConstants.LEFT);
         jmb.add(label,BorderLayout.NORTH);
 

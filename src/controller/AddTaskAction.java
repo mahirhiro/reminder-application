@@ -30,9 +30,9 @@ public class AddTaskAction extends AbstractAction{
     public void actionPerformed(ActionEvent e) {
         counter++;
         System.out.println("Adding new Task");
+        String event = panel.askForEvent();
         int priority = panel.askPriorityNumber();
         String date = panel.askForDate();
-        String event = panel.askForEvent();
         panel.addData(priority,date,event);
         fixEnabled();
     }

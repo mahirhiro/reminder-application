@@ -37,7 +37,9 @@ public class AppPanel extends JPanel implements Observer {
         application.addObserver(this);
         setVisible(true);
         setBackground(color);
-        model = new DefaultTableModel(new Object[][]{}, new String[]{"PRIORITY", "EVENT", "DATE"});
+        model = new DefaultTableModel(new Object[][]{}, new String[]{"EVENT", "PRIORITY", "DATE"});
+        table_1.setCellSelectionEnabled(true);
+        model.addRow(new Object[]{"Gym", 1, "07/06/2019"});
     }
 
     public AppPanel(Color color) {
@@ -69,7 +71,7 @@ public class AppPanel extends JPanel implements Observer {
 
 
     public void addData(int priority,String date,String eventName) {
-        model.addRow(new Object[]{ priority, eventName, date});
+        model.addRow(new Object[]{eventName, priority, date});
         model.fireTableDataChanged();
         table_1.setModel(model);
     }
