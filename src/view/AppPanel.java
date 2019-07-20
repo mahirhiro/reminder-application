@@ -2,8 +2,6 @@ package view;
 
 import com.toedter.calendar.JDateChooser;
 import model.App;
-import model.Obj;
-import model.SimpleModel;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -14,10 +12,7 @@ import java.util.Observer;
 
 public class AppPanel extends JPanel implements Observer {
 
-    public Object getNUM;
     private App application;
-    private Obj obj;
-    private SimpleModel sm;
 
     private DefaultTableModel model;
 
@@ -37,20 +32,16 @@ public class AppPanel extends JPanel implements Observer {
         application.addObserver(this);
         setVisible(true);
         setBackground(color);
-        model = new DefaultTableModel(new Object[][]{}, new String[]{"EVENT", "PRIORITY", "DATE"});
+        model = new DefaultTableModel(new Object[][]{}, new String[]{"EVENT", "PRIORITY", "DATE"}) {
+            public boolean isCellEditable(int row, int column) {
+                return false;//This causes all cells to be not editable
+            }
+        };
         table_1.setCellSelectionEnabled(true);
         model.addRow(new Object[]{"Gym", 1, "07/06/2019"});
         table_1.setColumnSelectionAllowed(false);
     }
 
-    public AppPanel(Color color) {
-        setOpaque(true);
-        setFocusable(true);
-        application.addObserver(this);
-        setVisible(true);
-        setBackground(color);
-
-    }
 
     public DefaultTableModel getModel() {
         return model;
@@ -106,6 +97,7 @@ public class AppPanel extends JPanel implements Observer {
                 eventName = JOptionPane.showInputDialog(null,"Enter a name for the event:", "Event Name Input", JOptionPane.INFORMATION_MESSAGE);
             } catch (NullPointerException e){
                 eventName = null;
+                System.out.println("Null pointer exception!");
 
             }
         }

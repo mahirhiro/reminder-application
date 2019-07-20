@@ -21,7 +21,6 @@ import java.util.Scanner;
 
 public class FinalProject extends JFrame {
 
-    String evntName, date, time;
     private JPanel minPanel;
     private JTextField txtEvent;
     private JTable table;
