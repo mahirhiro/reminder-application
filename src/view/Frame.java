@@ -65,7 +65,6 @@ public class Frame extends JFrame {
         JMenuBar jmb = new JMenuBar();
         JMenu file = new JMenu("File");
         JMenu edit = new JMenu("Edit");
-        JMenu clear = new JMenu("Clear");
         setJMenuBar(jmb);
 
 
@@ -78,13 +77,14 @@ public class Frame extends JFrame {
 
         edit.add(new AddTaskButton(mainPanel));
         edit.addSeparator();
-        edit.add(new EditTaskButton(application,mainPanel));
+        edit.add(new EditTaskButton(mainPanel));
         edit.addSeparator();
-        edit.add(new DeleteTaskButton(application,mainPanel));
+        edit.add(new DeleteTaskButton(mainPanel));
+        edit.addSeparator();
+        edit.add(new ClearButton(mainPanel));
 
         jmb.add(file);
         jmb.add(edit);
-        edit.add(new ClearButton(mainPanel));
         jmb.add(Box.createHorizontalGlue());
 
 //        JToolBar jtb = new JToolBar();

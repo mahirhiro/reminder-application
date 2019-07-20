@@ -1,7 +1,6 @@
 package view.buttons;
 
 import controller.DeleteTaskAction;
-import model.App;
 import view.AppPanel;
 
 import javax.swing.*;
@@ -19,8 +18,8 @@ public class DeleteTaskButton extends JMenuItem {
         setIconTextGap (-10);
     }
 
-    public DeleteTaskButton(App application, AppPanel panel){
-        super(new DeleteTaskAction(application, panel));
+    public DeleteTaskButton(AppPanel panel) {
+        super(new DeleteTaskAction(panel));
         setButtonProperties();
     }
 }

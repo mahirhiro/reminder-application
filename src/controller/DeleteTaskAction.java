@@ -1,23 +1,17 @@
 package controller;
 
-import model.App;
 import view.AppPanel;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
-import java.util.Observable;
-import java.util.Observer;
 
-public class DeleteTaskAction extends AbstractAction implements Observer {
-    private App application;
+public class DeleteTaskAction extends AbstractAction {
     private AppPanel panel;
 
-    public DeleteTaskAction(App application, AppPanel panel) {
+    public DeleteTaskAction(AppPanel panel) {
         super("Delete a Task");
-        this.application = application;
         this.panel = panel;
-        application.addObserver(this);
     }
 
     //TODO Check if the selected item in the list exits or not
@@ -39,13 +33,6 @@ public class DeleteTaskAction extends AbstractAction implements Observer {
         } else {
             model.removeRow(panel.getTable().getSelectedRow());
         }
-
-        application.refresh();
-        fixEnabled();
-    }
-
-    @Override
-    public void update(Observable o, Object arg) {
         fixEnabled();
     }
 }
