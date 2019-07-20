@@ -13,6 +13,7 @@ public class EditTaskAction extends AbstractAction implements Observer {
 
     private App application;
     private AppPanel panel;
+    JRootPane rootPane = new JRootPane();
 
     public EditTaskAction(App application, AppPanel panel) {
         super("Edit a Task");
@@ -31,9 +32,19 @@ public class EditTaskAction extends AbstractAction implements Observer {
         System.out.println("Editing a Task");
 
         DefaultTableModel model = (DefaultTableModel) panel.getTable().getModel();
-        model.setValueAt(panel.askForEvent(), panel.getTable().getSelectedRow(), 0);
-        model.setValueAt(panel.askPriorityNumber(), panel.getTable().getSelectedRow(), 1);
-        model.setValueAt(panel.askForDate(), panel.getTable().getSelectedRow(), 2);
+        if (panel.getTable().getSelectedRow() == -1) {
+            if (panel.getTable().getRowCount() == 0) {
+                JOptionPane.showMessageDialog(rootPane, "No data to be editied.!");
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Please select and item to edit!");
+            }
+        } else {
+            model.setValueAt(panel.askForEvent(), panel.getTable().getSelectedRow(), 0);
+            model.setValueAt(panel.askPriorityNumber(), panel.getTable().getSelectedRow(), 1);
+            model.setValueAt(panel.askForDate(), panel.getTable().getSelectedRow(), 2);
+        }
+
+
         fixEnabled();
     }
 

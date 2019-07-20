@@ -40,6 +40,7 @@ public class AppPanel extends JPanel implements Observer {
         model = new DefaultTableModel(new Object[][]{}, new String[]{"EVENT", "PRIORITY", "DATE"});
         table_1.setCellSelectionEnabled(true);
         model.addRow(new Object[]{"Gym", 1, "07/06/2019"});
+        table_1.setColumnSelectionAllowed(false);
     }
 
     public AppPanel(Color color) {
