@@ -1,5 +1,8 @@
 language: java
 jdk: oraclejdk12
 
-install: ant deps
+before_install:
+  - cd java
+  
 os: osx
+
