@@ -1,7 +1,6 @@
 package view;
 
 import com.toedter.calendar.JDateChooser;
-import model.App;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -10,53 +9,45 @@ import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.io.*;
 import java.text.SimpleDateFormat;
-import java.util.Observable;
-import java.util.Observer;
 import java.util.Vector;
 
-public class AppPanel extends JPanel implements Observer {
+//import model.App;
+
+public class AppPanel extends JPanel {
+
     private final DefaultTableModel model;
 
     private final com.toedter.calendar.JDateChooser dateChooser = new com.toedter.calendar.JDateChooser();
 
     private final JTable table_1 = new JTable(getModel());
 
+    private final JFileChooser myJFileChooser = new JFileChooser(new File("."));
 
-    public JDateChooser getDateChooser() {
-        return dateChooser;
-    }
-
-    public AppPanel(App application, Color color) {
+    public AppPanel(Color color) {
         setOpaque(true);
         setFocusable(true);
-        application.addObserver(this);
         setVisible(true);
         setBackground(color);
         model = new DefaultTableModel(new Object[][]{}, new String[]{"EVENT", "PRIORITY", "DATE"}) {
+            /* This avoids the user from being able to edit cells without the button */
             public boolean isCellEditable(int row, int column) {
-                return false;//This causes all cells to be not editable
-            }
-
-            public Class<?> getColumnClass(int column) {
-                return getValueAt(0, column).getClass();
+                return false;
             }
         };
+        /*  This lets the user only select the entire row as a whole */
         table_1.setCellSelectionEnabled(true);
-        model.addRow(new Object[]{"Work", 3, "09/06/2019"});
-        model.addRow(new Object[]{"Football Match", 1, "07/06/2019"});
-        model.addRow(new Object[]{"Gymm", 2, "07/06/2018"});
         table_1.setColumnSelectionAllowed(false);
 
+        /* This allows the user to sort the data on the table */
         TableRowSorter<TableModel> sorter = new TableRowSorter<>(model);
         table_1.setRowSorter(sorter);
     }
-
 
     public DefaultTableModel getModel() {
         return model;
     }
 
-
+    /* This method allows to receive a user input for the preferred date */
     public String askForDate() {
         String message = "Please select a date:\n";
         Object[] params = {message, dateChooser};
@@ -70,14 +61,14 @@ public class AppPanel extends JPanel implements Observer {
         return s;
     }
 
-
+    /* This method takes the required information from the user to be able to populate the table with more information*/
     public void addData(int priority, String date, String eventName) {
         model.addRow(new Object[]{eventName, priority, date});
         model.fireTableDataChanged();
         table_1.setModel(model);
     }
 
-
+    /* This method allows to receive a user input for the preferred priority number */
     public int askForPriorityNumber() {
         int priority = 0;
         Integer[] priorityArrayOptions = {1, 2, 3, 4, 5};
@@ -96,7 +87,7 @@ public class AppPanel extends JPanel implements Observer {
         return priority;
     }
 
-
+    /* This method allows to receive a user input for the preferred event name */
     public String askForEventName() {
         String eventName;
         eventName = JOptionPane.showInputDialog(null, "Please enter a name for the event:", "Event Name Input", JOptionPane.INFORMATION_MESSAGE);
@@ -109,10 +100,9 @@ public class AppPanel extends JPanel implements Observer {
             }
         }
         return eventName;
-
-
     }
 
+    /* This method allows the user to edit information which already exists on the table */
     public void editTableValues() {
         String[] options = {"Edit Event Date", "Edit Event Priority", "Edit Event Name"};
         int x = JOptionPane.showOptionDialog(null,
@@ -133,14 +123,7 @@ public class AppPanel extends JPanel implements Observer {
         return table_1;
     }
 
-
-    @Override
-    public void update(Observable o, Object arg) {
-        repaint();
-    }
-
-    private final JFileChooser myJFileChooser = new JFileChooser(new File("."));
-
+    /* These methods help save and load files */
     public void saveTable() {
         if (myJFileChooser.showSaveDialog(this) ==
                 JFileChooser.APPROVE_OPTION) {
@@ -180,12 +163,9 @@ public class AppPanel extends JPanel implements Observer {
         }
     }
 
+    /* This method allows us to clear the entire table with the click of a button */
     public void clearTable() {
         model.setRowCount(0);
     }
 
-    public void getNUM() {
-        System.out.println("row: " + table_1.getRowCount() + "\n");
-        System.out.println("column: " + table_1.getColumnCount() + "\n");
-    }
 }

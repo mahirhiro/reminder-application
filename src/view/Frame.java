@@ -1,12 +1,11 @@
 package view;
 
-import model.App;
+
 import model.JTableUtilities;
 import view.buttons.*;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
-import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -16,16 +15,9 @@ import static java.awt.Color.DARK_GRAY;
 public class Frame extends JFrame {
 
 
-    public Frame(App application) {
+    public Frame() {
 
-        this.setTitle("ToDo List");
-
-        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        this.setPreferredSize(new Dimension(550,400));
-
-        this.setResizable(false);
-
-        AppPanel mainPanel = new AppPanel(application, DARK_GRAY);
+        AppPanel mainPanel = new AppPanel(DARK_GRAY);
         mainPanel.setLayout(null);
         setContentPane(mainPanel);
 
@@ -39,6 +31,7 @@ public class Frame extends JFrame {
         JPanel panel2 = new JPanel();
         panel2.setBackground(DARK_GRAY);
 
+        /* This sets the layout of the JTable on the panel */
         GroupLayout gl_recentEventPanel = new GroupLayout(recentEventPanel);
         gl_recentEventPanel.setHorizontalGroup(
                 gl_recentEventPanel.createParallelGroup(GroupLayout.Alignment.CENTER)
@@ -63,19 +56,21 @@ public class Frame extends JFrame {
         panel2.setLayout(null);
         mainPanel.add(panel2);
 
+        /* Adding the menuBar to the top of the frame */
         JMenuBar jmb = new JMenuBar();
         JMenu file = new JMenu("File");
         JMenu edit = new JMenu("Edit");
         JMenuItem help = new JMenu("Help");
         setJMenuBar(jmb);
 
-        /* adding the buttons for the 'file' menu */
+        /* Adding the buttons for the 'file' menu */
         file.add(new SaveButton(mainPanel));
         file.addSeparator();
         file.add(new LoadButton(mainPanel));
         file.addSeparator();
         file.add(new ExitButton());
 
+        /* adding the buttons for the 'exit' menu */
         edit.add(new AddTaskButton(mainPanel));
         edit.addSeparator();
         edit.add(new EditTaskButton(mainPanel));
@@ -84,6 +79,7 @@ public class Frame extends JFrame {
         edit.addSeparator();
         edit.add(new ClearButton(mainPanel));
 
+        /* adding the buttons for the 'help' menu */
         help.add(new FeaturesAvailableButton());
 
         jmb.add(file);
@@ -91,18 +87,23 @@ public class Frame extends JFrame {
         jmb.add(help);
         jmb.add(Box.createHorizontalGlue());
 
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
-        mainPanel.getTable().setDefaultRenderer(Integer.class, centerRenderer);
 
-        mainPanel.getDateChooser().setDateFormatString("MM/dd/yyyy");
-
+        /* This is just some extra feature to see the date on the top right corner of the screen */
         String date = new SimpleDateFormat("MM/dd/yyyy").format(new Date());
         JLabel label = new JLabel(date,SwingConstants.LEFT);
         jmb.add(label,BorderLayout.NORTH);
 
+        /* This adds the model which holds the table of the panel onto the mainPanel */
         mainPanel.getTable().setModel(mainPanel.getModel());
+
+        /* This part center's the information on the screen */
         JTableUtilities.setCellsAlignment(mainPanel.getTable(), SwingConstants.CENTER);
+
+        /* This part sets the layout for the dimensions and other necessary features */
+        this.setTitle("ToDo List");
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        this.setPreferredSize(new Dimension(550, 400));
+        this.setResizable(false);
         this.setJMenuBar(jmb);
         this.pack();
         this.setLocationRelativeTo (null); // Center on screen.

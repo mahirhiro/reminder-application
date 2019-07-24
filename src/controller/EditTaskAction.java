@@ -16,7 +16,6 @@ public class EditTaskAction extends AbstractAction {
         this.panel = panel;
     }
 
-
     @Override
     public void actionPerformed(ActionEvent e) {
         System.out.println("Editing a Task");

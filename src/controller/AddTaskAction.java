@@ -16,6 +16,7 @@ public class AddTaskAction extends AbstractAction{
         fixEnabled();
     }
 
+    /* This method allows us to disable the add button after a certain number of events have been added */
     private void fixEnabled(){
         if ( counter > 14) {
             setEnabled(false);
@@ -23,8 +24,6 @@ public class AddTaskAction extends AbstractAction{
             setEnabled(true);
         }
     }
-
-
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -36,5 +35,4 @@ public class AddTaskAction extends AbstractAction{
         panel.addData(priority,date,event);
         fixEnabled();
     }
-
 }
