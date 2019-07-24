@@ -38,8 +38,11 @@ public class AppPanel extends JPanel implements Observer {
             }
         };
         table_1.setCellSelectionEnabled(true);
-        model.addRow(new Object[]{"Gym", 1, "07/06/2019"});
+        model.addRow(new Object[]{"Gymmm", "3", "07/06/2019"});
+        model.addRow(new Object[]{"Gym", "1", "07/06/2019"});
+        model.addRow(new Object[]{"Gymm", "2", "07/06/2019"});
         table_1.setColumnSelectionAllowed(false);
+
     }
 
 
@@ -49,10 +52,10 @@ public class AppPanel extends JPanel implements Observer {
 
 
     public String askForDate(){
-        String message ="Choose start date:\n";
+        String message = "Please select a date:\n";
         Object[] params = {message,dateChooser};
         String s = "";
-        JOptionPane.showConfirmDialog(null, params, "Enter the event date", JOptionPane.DEFAULT_OPTION);
+        JOptionPane.showConfirmDialog(null, params, "Event date input", JOptionPane.DEFAULT_OPTION);
         while (dateChooser.getDate() == null) {
                 JOptionPane.showConfirmDialog(null, params, "Please enter the event date again!", JOptionPane.DEFAULT_OPTION);
         }
@@ -69,13 +72,13 @@ public class AppPanel extends JPanel implements Observer {
     }
 
 
-    public int askPriorityNumber(){
+    public int askForPriorityNumber() {
         int priority = 0;
         Integer[] priorityArrayOptions  = {1,2,3,4,5};
         while (priority == 0){
             try{
-                priority = (int) JOptionPane.showInputDialog(null, "Choose now...",
-                        "Choose the priority of the event", JOptionPane.QUESTION_MESSAGE, null, // Use
+                priority = (int) JOptionPane.showInputDialog(null, "Please choose the priority of the event",
+                        "Priority Number Input", JOptionPane.QUESTION_MESSAGE, null, // Use
                         // default
                         // icon
                         priorityArrayOptions, // Array of choices
@@ -88,20 +91,38 @@ public class AppPanel extends JPanel implements Observer {
     }
 
 
-    public String askForEvent() {
+    public String askForEventName() {
         String eventName;
-        eventName = JOptionPane.showInputDialog(null,"Enter a name for the event:", "Event Name Input", JOptionPane.INFORMATION_MESSAGE);
-        assert eventName != null;
-        while (eventName.isEmpty()){
+        eventName = JOptionPane.showInputDialog(null, "Please enter a name for the event:", "Event Name Input", JOptionPane.INFORMATION_MESSAGE);
+        while (eventName == null || eventName.isEmpty()) {
             try{
-                eventName = JOptionPane.showInputDialog(null,"Enter a name for the event:", "Event Name Input", JOptionPane.INFORMATION_MESSAGE);
+                // while (!eventName.equalsIgnoreCase("")) {
+                eventName = JOptionPane.showInputDialog(null, "Please enter a name for the event:", "Event Name Input", JOptionPane.INFORMATION_MESSAGE);
+                //}
             } catch (NullPointerException e){
-                eventName = null;
                 System.out.println("Null pointer exception!");
-
+                eventName = null;
             }
         }
         return eventName;
+
+
+    }
+
+    public void editTableValues() {
+        String[] options = {"Edit Event Date", "Edit Event Priority", "Edit Event Name"};
+        int x = JOptionPane.showOptionDialog(null,
+                "Please select the option you would like to edit",
+                "Edit Option Panel", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, null);
+        if (x == JOptionPane.YES_OPTION) {
+            model.setValueAt(askForDate(), table_1.getSelectedRow(), 2);
+        } else if (x == JOptionPane.CANCEL_OPTION) {
+            model.setValueAt(askForEventName(), table_1.getSelectedRow(), 0);
+
+        } else if (x == JOptionPane.NO_OPTION) {
+            model.setValueAt(askForPriorityNumber(), table_1.getSelectedRow(), 1);
+        }
+
     }
 
     public JTable getTable(){
@@ -112,15 +133,6 @@ public class AppPanel extends JPanel implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         repaint();
-    }
-
-
-    public void editATask () {
-
-    }
-
-    public void deleteATask () {
-
     }
 
 
@@ -137,5 +149,4 @@ public class AppPanel extends JPanel implements Observer {
         System.out.println("row: " +table_1.getRowCount() + "\n");
         System.out.println("column: " +table_1.getColumnCount() + "\n");
     }
-
 }

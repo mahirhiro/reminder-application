@@ -1,15 +1,13 @@
 package controller;
 
-import model.App;
 import view.AppPanel;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
+
 
 public class EditTaskAction extends AbstractAction {
 
-    private App application;
     private AppPanel panel;
     JRootPane rootPane = new JRootPane();
 
@@ -18,29 +16,19 @@ public class EditTaskAction extends AbstractAction {
         this.panel = panel;
     }
 
-    //TODO Check if the selected item in the list exits or not
-    private void fixEnabled(){
-
-    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         System.out.println("Editing a Task");
-
-        DefaultTableModel model = (DefaultTableModel) panel.getTable().getModel();
         if (panel.getTable().getSelectedRow() == -1) {
             if (panel.getTable().getRowCount() == 0) {
-                JOptionPane.showMessageDialog(rootPane, "No data to be editied.!");
+                JOptionPane.showMessageDialog(rootPane, "No data to be edited!");
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Please select and item to edit!");
             }
         } else {
-            model.setValueAt(panel.askForEvent(), panel.getTable().getSelectedRow(), 0);
-            model.setValueAt(panel.askPriorityNumber(), panel.getTable().getSelectedRow(), 1);
-            model.setValueAt(panel.askForDate(), panel.getTable().getSelectedRow(), 2);
+            panel.editTableValues();
         }
-        fixEnabled();
     }
-
 }
 

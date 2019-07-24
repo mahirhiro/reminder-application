@@ -108,14 +108,13 @@ public class Frame extends JFrame {
         JLabel label = new JLabel(date,SwingConstants.LEFT);
         jmb.add(label,BorderLayout.NORTH);
 
-        //mainPanel.getModel().addRow(new Object[]{ 3, "Gym", date});
         mainPanel.getTable().setModel(mainPanel.getModel());
-
         JTableUtilities.setCellsAlignment(mainPanel.getTable(), SwingConstants.CENTER);
         this.setJMenuBar(jmb);
         this.pack();
         this.setLocationRelativeTo (null); // Center on screen.
         this.setVisible(true);
+
     }
 
 }
