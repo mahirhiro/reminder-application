@@ -7,6 +7,7 @@ My first personal project - 2019
 * [Screenshots](#screenshots)
 * [Features](#features)
 * [Status](#status)
+* [Contact](#contact)
 
 ## General info
 This project was intented to help me get more familar with the MVC pattern and using JAVA as the medium of doing so.
@@ -38,3 +39,5 @@ It was also my first project outside univeristy, intended to boost my current po
 ## Status
 Project is: Completed
 
+## Contact
+Feel free to reach me on my LinkedIn: https://www.linkedin.com/in/mahirhiro/
