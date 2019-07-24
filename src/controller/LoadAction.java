@@ -27,6 +27,6 @@ public class LoadAction extends AbstractAction implements Observer {
     @Override
     public void actionPerformed(ActionEvent e) {
         System.out.println("Loading");
-        panel.getNUM();
+        panel.loadTable();
     }
 }

@@ -6,9 +6,12 @@ import model.App;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.io.*;
 import java.text.SimpleDateFormat;
+import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Vector;
 
 public class AppPanel extends JPanel implements Observer {
 
@@ -25,7 +28,7 @@ public class AppPanel extends JPanel implements Observer {
         return dateChooser;
     }
 
-    public AppPanel(App application,Color color) {
+    public AppPanel(App application, Color color) {
         this.application = application;
         setOpaque(true);
         setFocusable(true);
@@ -51,13 +54,13 @@ public class AppPanel extends JPanel implements Observer {
     }
 
 
-    public String askForDate(){
+    public String askForDate() {
         String message = "Please select a date:\n";
-        Object[] params = {message,dateChooser};
+        Object[] params = {message, dateChooser};
         String s = "";
         JOptionPane.showConfirmDialog(null, params, "Event date input", JOptionPane.DEFAULT_OPTION);
         while (dateChooser.getDate() == null) {
-                JOptionPane.showConfirmDialog(null, params, "Please enter the event date again!", JOptionPane.DEFAULT_OPTION);
+            JOptionPane.showConfirmDialog(null, params, "Please enter the event date again!", JOptionPane.DEFAULT_OPTION);
         }
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
         s = sdf.format(((JDateChooser) params[1]).getDate());
@@ -65,7 +68,7 @@ public class AppPanel extends JPanel implements Observer {
     }
 
 
-    public void addData(int priority,String date,String eventName) {
+    public void addData(int priority, String date, String eventName) {
         model.addRow(new Object[]{eventName, priority, date});
         model.fireTableDataChanged();
         table_1.setModel(model);
@@ -74,16 +77,16 @@ public class AppPanel extends JPanel implements Observer {
 
     public int askForPriorityNumber() {
         int priority = 0;
-        Integer[] priorityArrayOptions  = {1,2,3,4,5};
-        while (priority == 0){
-            try{
+        Integer[] priorityArrayOptions = {1, 2, 3, 4, 5};
+        while (priority == 0) {
+            try {
                 priority = (int) JOptionPane.showInputDialog(null, "Please choose the priority of the event",
                         "Priority Number Input", JOptionPane.QUESTION_MESSAGE, null, // Use
                         // default
                         // icon
                         priorityArrayOptions, // Array of choices
                         priorityArrayOptions[0]);
-            } catch (NullPointerException e){
+            } catch (NullPointerException e) {
                 System.out.println("Null pointer error");
             }
         }
@@ -95,11 +98,9 @@ public class AppPanel extends JPanel implements Observer {
         String eventName;
         eventName = JOptionPane.showInputDialog(null, "Please enter a name for the event:", "Event Name Input", JOptionPane.INFORMATION_MESSAGE);
         while (eventName == null || eventName.isEmpty()) {
-            try{
-                // while (!eventName.equalsIgnoreCase("")) {
+            try {
                 eventName = JOptionPane.showInputDialog(null, "Please enter a name for the event:", "Event Name Input", JOptionPane.INFORMATION_MESSAGE);
-                //}
-            } catch (NullPointerException e){
+            } catch (NullPointerException e) {
                 System.out.println("Null pointer exception!");
                 eventName = null;
             }
@@ -125,7 +126,7 @@ public class AppPanel extends JPanel implements Observer {
 
     }
 
-    public JTable getTable(){
+    public JTable getTable() {
         return table_1;
     }
 
@@ -135,18 +136,54 @@ public class AppPanel extends JPanel implements Observer {
         repaint();
     }
 
+    private JFileChooser myJFileChooser = new JFileChooser(new File("."));
 
-    public void saveFileName () {
-
+    public void saveTable() {
+        if (myJFileChooser.showSaveDialog(this) ==
+                JFileChooser.APPROVE_OPTION) {
+            saveTable(myJFileChooser.getSelectedFile());
+        }
     }
 
+    private void saveTable(File file) {
+        try {
+            ObjectOutputStream out = new ObjectOutputStream(
+                    new FileOutputStream(file));
+            out.writeObject(model.getDataVector());
+            out.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void loadTable() {
+        clearTable();
+        if (myJFileChooser.showOpenDialog(this) ==
+                JFileChooser.APPROVE_OPTION)
+            loadTable(myJFileChooser.getSelectedFile());
+    }
+
+    private void loadTable(File file) {
+        try {
+            ObjectInputStream in = new ObjectInputStream(
+                    new FileInputStream(file));
+            Vector rowData = (Vector) in.readObject();
+            Iterator itr = rowData.iterator();
+            while (itr.hasNext()) {
+                model.addRow((Vector) itr.next());
+            }
+            in.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
 
     public void clearTable() {
         model.setRowCount(0);
     }
 
     public void getNUM() {
-        System.out.println("row: " +table_1.getRowCount() + "\n");
-        System.out.println("column: " +table_1.getColumnCount() + "\n");
+        System.out.println("row: " + table_1.getRowCount() + "\n");
+        System.out.println("column: " + table_1.getColumnCount() + "\n");
     }
 }

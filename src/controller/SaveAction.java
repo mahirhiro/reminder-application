@@ -24,7 +24,7 @@ public class SaveAction extends AbstractAction implements Observer {
     @Override
     public void actionPerformed(ActionEvent e) {
         System.out.println("Saving");
-        panel.saveFileName();
+        panel.saveTable();
     }
 
     @Override
