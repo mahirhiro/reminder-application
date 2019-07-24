@@ -1,7 +1,5 @@
 # ToDo-List-application
 
-My first personal project - 2019
-
 ## Table of contents
 * [General info](#general-info)
 * [Screenshots](#screenshots)
