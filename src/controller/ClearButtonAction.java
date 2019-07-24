@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 
 public class ClearButtonAction extends AbstractAction {
 
-    private AppPanel panel;
+    private final AppPanel panel;
 
     public ClearButtonAction(AppPanel panel) {
         super("Clear all Task");

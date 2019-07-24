@@ -1,7 +1,6 @@
 package view.buttons;
 
 import controller.LoadAction;
-import model.App;
 import view.AppPanel;
 
 import javax.swing.*;
@@ -20,8 +19,8 @@ public class LoadButton extends JMenuItem {
         setPreferredSize(new Dimension(100,20));
     }
 
-    public LoadButton(App application, AppPanel panel) {
-        super(new LoadAction(application,panel));
+    public LoadButton(AppPanel panel) {
+        super(new LoadAction(panel));
         setButtonProperties();
 
     }

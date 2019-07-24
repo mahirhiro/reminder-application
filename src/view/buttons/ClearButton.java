@@ -12,7 +12,7 @@ public class ClearButton extends JMenuItem {
     private void setButtonProperties() {
         setVerticalTextPosition(AbstractButton.CENTER);
         setHorizontalTextPosition(AbstractButton.CENTER);
-        setToolTipText("Delete a Task");
+        setToolTipText("Clear the screen");
         setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.CTRL_DOWN_MASK));
         setPreferredSize(new Dimension(140,20));
         setIconTextGap (-10);

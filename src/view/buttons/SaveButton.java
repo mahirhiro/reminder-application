@@ -1,7 +1,6 @@
 package view.buttons;
 
 import controller.SaveAction;
-import model.App;
 import view.AppPanel;
 
 import javax.swing.*;
@@ -20,8 +19,8 @@ public class SaveButton extends JMenuItem {
         setPreferredSize(new Dimension(100,20));
     }
 
-    public SaveButton(App application, AppPanel panel) {
-        super(new SaveAction(application,panel));
+    public SaveButton(AppPanel panel) {
+        super(new SaveAction(panel));
         setButtonProperties();
 
     }

@@ -8,8 +8,8 @@ import java.awt.event.ActionEvent;
 
 public class EditTaskAction extends AbstractAction {
 
-    private AppPanel panel;
-    JRootPane rootPane = new JRootPane();
+    private final AppPanel panel;
+    private final JRootPane rootPane = new JRootPane();
 
     public EditTaskAction(AppPanel panel) {
         super("Edit a Task");

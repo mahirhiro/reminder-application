@@ -1,24 +1,17 @@
 package controller;
 
-import model.App;
 import view.AppPanel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
-import java.util.Observable;
-import java.util.Observer;
 
-public class SaveAction extends AbstractAction implements Observer {
+public class SaveAction extends AbstractAction {
 
-    private App application;
-    private AppPanel panel;
+    private final AppPanel panel;
 
-
-    public SaveAction(App application, AppPanel panel) {
+    public SaveAction(AppPanel panel) {
         super("Save");
-        this.application = application;
         this.panel = panel;
-        application.addObserver(this);
     }
 
     @Override
@@ -27,8 +20,4 @@ public class SaveAction extends AbstractAction implements Observer {
         panel.saveTable();
     }
 
-    @Override
-    public void update(Observable o, Object arg) {
-
-    }
 }

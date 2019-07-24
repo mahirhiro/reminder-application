@@ -52,7 +52,7 @@ public class App extends Observable implements Observer {
         return title + "," + description + "," + priority;
     }
 
-    public void refresh(){
+    private void refresh() {
         setChanged();
         notifyObservers();
     }

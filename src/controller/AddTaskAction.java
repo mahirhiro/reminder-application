@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 
 public class AddTaskAction extends AbstractAction{
 
-    private AppPanel panel;
+    private final AppPanel panel;
     private int counter = 0;
 
     public AddTaskAction(AppPanel panel) {

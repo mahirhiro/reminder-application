@@ -12,7 +12,7 @@ public class ExitButton extends JMenuItem {
         setVerticalTextPosition(AbstractButton.CENTER);
         setHorizontalTextPosition(AbstractButton.CENTER);
         setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, InputEvent.CTRL_DOWN_MASK));
-        setToolTipText("Exit and save");
+        setToolTipText("Exit application");
         setIconTextGap (-10);
     }
 

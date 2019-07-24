@@ -1,6 +1,7 @@
 package view;
 
 import model.App;
+import model.JTableUtilities;
 import view.buttons.*;
 
 import javax.swing.*;
@@ -16,6 +17,7 @@ public class Frame extends JFrame {
 
 
     public Frame(App application) {
+
         this.setTitle("ToDo List");
 
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -30,7 +32,7 @@ public class Frame extends JFrame {
         JScrollPane scrollPane = new JScrollPane();
         JPanel recentEventPanel = new JPanel();
         recentEventPanel.setBackground(Color.DARK_GRAY);
-        recentEventPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Recent Events", TitledBorder.CENTER, TitledBorder.TOP, null, Color.ORANGE));
+        recentEventPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "TODO List", TitledBorder.CENTER, TitledBorder.TOP, null, Color.ORANGE));
         recentEventPanel.setBounds(10, 24, 540, 285);
         mainPanel.add(recentEventPanel);
 
@@ -56,22 +58,21 @@ public class Frame extends JFrame {
         );
 
         scrollPane.setViewportView(mainPanel.getTable());
-        mainPanel.getTable().setFont(new Font("Tahoma", Font.BOLD, 12));
+        mainPanel.getTable().setFont(new Font("Tahoma", Font.PLAIN, 12));
         mainPanel.getTable().setFillsViewportHeight(true);
-        //mainPanel.getTable().setModel(new DefaultTableModel(new Object[][]{}, new String[]{"PRIORITY", "EVENT", "DATE"}));
         panel2.setLayout(null);
         mainPanel.add(panel2);
 
         JMenuBar jmb = new JMenuBar();
         JMenu file = new JMenu("File");
         JMenu edit = new JMenu("Edit");
+        JMenuItem help = new JMenu("Help");
         setJMenuBar(jmb);
 
-
         /* adding the buttons for the 'file' menu */
-        file.add(new SaveButton(application, mainPanel));
+        file.add(new SaveButton(mainPanel));
         file.addSeparator();
-        file.add(new LoadButton(application, mainPanel));
+        file.add(new LoadButton(mainPanel));
         file.addSeparator();
         file.add(new ExitButton());
 
@@ -83,20 +84,12 @@ public class Frame extends JFrame {
         edit.addSeparator();
         edit.add(new ClearButton(mainPanel));
 
+        help.add(new FeaturesAvailableButton());
+
         jmb.add(file);
         jmb.add(edit);
+        jmb.add(help);
         jmb.add(Box.createHorizontalGlue());
-
-//        JToolBar jtb = new JToolBar();
-//        jtb.setFloatable(false);
-//        jtb.setRollover(true);
-//        jtb.add(new AddTaskButton(application,mainPanel));
-//        jtb.addSeparator();
-//        jtb.add(new EditTaskButton(application,mainPanel));
-//        jtb.addSeparator();
-        //jtb.add(new DeleteTaskButton(application,mainPanel));
-
-        //this.add(jtb, BorderLayout.PAGE_START);
 
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment( JLabel.CENTER );

@@ -5,23 +5,21 @@ import model.App;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.io.*;
 import java.text.SimpleDateFormat;
-import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Vector;
 
 public class AppPanel extends JPanel implements Observer {
+    private final DefaultTableModel model;
 
-    private App application;
+    private final com.toedter.calendar.JDateChooser dateChooser = new com.toedter.calendar.JDateChooser();
 
-    private DefaultTableModel model;
-
-    private com.toedter.calendar.JDateChooser dateChooser = new com.toedter.calendar.JDateChooser();
-
-    private JTable table_1 = new JTable(getModel());
+    private final JTable table_1 = new JTable(getModel());
 
 
     public JDateChooser getDateChooser() {
@@ -29,7 +27,6 @@ public class AppPanel extends JPanel implements Observer {
     }
 
     public AppPanel(App application, Color color) {
-        this.application = application;
         setOpaque(true);
         setFocusable(true);
         application.addObserver(this);
@@ -39,13 +36,19 @@ public class AppPanel extends JPanel implements Observer {
             public boolean isCellEditable(int row, int column) {
                 return false;//This causes all cells to be not editable
             }
+
+            public Class<?> getColumnClass(int column) {
+                return getValueAt(0, column).getClass();
+            }
         };
         table_1.setCellSelectionEnabled(true);
-        model.addRow(new Object[]{"Gymmm", "3", "07/06/2019"});
-        model.addRow(new Object[]{"Gym", "1", "07/06/2019"});
-        model.addRow(new Object[]{"Gymm", "2", "07/06/2019"});
+        model.addRow(new Object[]{"Work", 3, "09/06/2019"});
+        model.addRow(new Object[]{"Football Match", 1, "07/06/2019"});
+        model.addRow(new Object[]{"Gymm", 2, "07/06/2018"});
         table_1.setColumnSelectionAllowed(false);
 
+        TableRowSorter<TableModel> sorter = new TableRowSorter<>(model);
+        table_1.setRowSorter(sorter);
     }
 
 
@@ -57,7 +60,7 @@ public class AppPanel extends JPanel implements Observer {
     public String askForDate() {
         String message = "Please select a date:\n";
         Object[] params = {message, dateChooser};
-        String s = "";
+        String s;
         JOptionPane.showConfirmDialog(null, params, "Event date input", JOptionPane.DEFAULT_OPTION);
         while (dateChooser.getDate() == null) {
             JOptionPane.showConfirmDialog(null, params, "Please enter the event date again!", JOptionPane.DEFAULT_OPTION);
@@ -136,7 +139,7 @@ public class AppPanel extends JPanel implements Observer {
         repaint();
     }
 
-    private JFileChooser myJFileChooser = new JFileChooser(new File("."));
+    private final JFileChooser myJFileChooser = new JFileChooser(new File("."));
 
     public void saveTable() {
         if (myJFileChooser.showSaveDialog(this) ==
@@ -168,9 +171,8 @@ public class AppPanel extends JPanel implements Observer {
             ObjectInputStream in = new ObjectInputStream(
                     new FileInputStream(file));
             Vector rowData = (Vector) in.readObject();
-            Iterator itr = rowData.iterator();
-            while (itr.hasNext()) {
-                model.addRow((Vector) itr.next());
+            for (Object rowDatum : rowData) {
+                model.addRow((Vector) rowDatum);
             }
             in.close();
         } catch (Exception ex) {
