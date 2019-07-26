@@ -1,6 +1,6 @@
-package main.controller;
+package controller;
 
-import main.view.AppPanel;
+import view.AppPanel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

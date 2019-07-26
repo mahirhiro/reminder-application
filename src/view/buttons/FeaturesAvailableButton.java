@@ -1,6 +1,6 @@
-package main.view.buttons;
+package view.buttons;
 
-import main.controller.FeaturesAvailableAction;
+import controller.FeaturesAvailableAction;
 
 import javax.swing.*;
 import java.awt.*;

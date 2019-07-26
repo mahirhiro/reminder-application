@@ -1,4 +1,4 @@
-package main.view;
+package view;
 
 import com.toedter.calendar.JDateChooser;
 
@@ -17,7 +17,7 @@ public class AppPanel extends JPanel {
 
     private final DefaultTableModel model;
 
-    private final com.toedter.calendar.JDateChooser dateChooser = new com.toedter.calendar.JDateChooser();
+    private final JDateChooser dateChooser = new JDateChooser();
 
     private final JTable table_1 = new JTable(getModel());
 
@@ -39,7 +39,7 @@ public class AppPanel extends JPanel {
         table_1.setColumnSelectionAllowed(false);
 
         /* This allows the user to sort the data on the table */
-        TableRowSorter<TableModel> sorter = new TableRowSorter<>(model);
+        TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(model);
         table_1.setRowSorter(sorter);
     }
 

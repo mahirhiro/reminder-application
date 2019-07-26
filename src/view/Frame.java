@@ -1,8 +1,8 @@
-package main.view;
+package view;
 
 
-import main.model.JTableUtilities;
-import main.view.buttons.*;
+import model.JTableUtilities;
+import view.buttons.*;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
