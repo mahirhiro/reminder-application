@@ -1,4 +1,5 @@
-# ToDo-List-application
+
+# ToDo-List-application [![Build Status](https://travis-ci.com/mahirhiro/todo-list-application.svg?branch=master)](https://travis-ci.com/mahirhiro/todo-list-application)
 
 ## Table of contents
 * [General info](#general-info)
