@@ -1,8 +1,8 @@
-package view;
+package main.view;
 
 
-import model.JTableUtilities;
-import view.buttons.*;
+import main.model.JTableUtilities;
+import main.view.buttons.*;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -64,7 +64,7 @@ public class Frame extends JFrame {
         setJMenuBar(jmb);
 
         /* Adding the buttons for the 'file' menu */
-        file.add(new SaveButton(mainPanel));
+        final JMenuItem add = file.add(new SaveButton(mainPanel));
         file.addSeparator();
         file.add(new LoadButton(mainPanel));
         file.addSeparator();

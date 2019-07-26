@@ -1,28 +1,27 @@
-package view.buttons;
+package main.view.buttons;
 
-import controller.SaveAction;
-import view.AppPanel;
+import main.controller.LoadAction;
+import main.view.AppPanel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 
-public class SaveButton extends JMenuItem {
+public class LoadButton extends JMenuItem {
 
     private void setButtonProperties() {
         setVerticalTextPosition(AbstractButton.CENTER);
         setHorizontalTextPosition(AbstractButton.CENTER);
-        setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK));
+        setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, InputEvent.CTRL_DOWN_MASK));
         setToolTipText("Save");
         setIconTextGap(-10);
         setPreferredSize(new Dimension(100, 20));
     }
 
-    public SaveButton(AppPanel panel) {
-        super(new SaveAction(panel));
+    public LoadButton(AppPanel panel) {
+        super(new LoadAction(panel));
         setButtonProperties();
 
     }
 }
-

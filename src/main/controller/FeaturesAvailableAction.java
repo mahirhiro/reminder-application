@@ -1,4 +1,4 @@
-package controller;
+package main.controller;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

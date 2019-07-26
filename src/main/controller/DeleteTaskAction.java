@@ -1,6 +1,6 @@
-package controller;
+package main.controller;
 
-import view.AppPanel;
+import main.view.AppPanel;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;

@@ -1,6 +1,6 @@
-package view.buttons;
+package main.view.buttons;
 
-import controller.ExitAction;
+import main.controller.ExitAction;
 
 import javax.swing.*;
 import java.awt.event.InputEvent;
