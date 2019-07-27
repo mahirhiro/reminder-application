@@ -5,6 +5,7 @@
 * [General info](#general-info)
 * [Screenshots](#screenshots)
 * [Features](#features)
+* [How to run it?](#how-to-run-it)
 * [Status](#status)
 * [Contact](#contact)
 
@@ -24,6 +25,16 @@ It was also my first project outside univeristy, intended to boost my current po
 
 * Here you can see how the events were sorted by the priority number
 <img width="560" alt="Screen Shot 2019-07-25 at 1 05 39 AM" src="https://user-images.githubusercontent.com/49659324/61829118-4dbcb780-ae79-11e9-8c51-26464418e8dd.png">
+
+## How to run it?
+1. Go to where to want to save the file on your computer with your terminal
+2. Type git clone https://github.com/mahirhiro/todo-list-application.git
+3. With your IDE open the pom.xml file as a project
+4. Simply right click on the java sources folder ("java" under src/) and select Mark Directory As > Sources Root (see screenshot below)
+
+5. Go to File -> Project structure -> Modules -> Dependencies -> '+' -> add 'jcalendar-1.4.jar' file (see screenshot below)
+6. Click run 😉 & enjoy !
+
 
 ## Features
 * 'Add a Task' or 'Ctrl-A' to add an event
