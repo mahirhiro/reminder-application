@@ -1,8 +1,7 @@
 
 <p align="center">
-	<img width="300" height="280" src="https://user-images.githubusercontent.com/49659324/61997249-cb6a0880-b0af-11e9-801f-795a3ef46c94.png"> 
+	<img width="200" height="80" src="https://user-images.githubusercontent.com/49659324/61997339-4b44a280-b0b1-11e9-949a-ca1209fecf5a.png"> 
 	</p> 
-
 
 
 ## Table of contents [![Build Status](https://travis-ci.com/mahirhiro/todo-list-application.svg?branch=master)](https://travis-ci.com/mahirhiro/todo-list-application)
