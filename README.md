@@ -36,7 +36,7 @@ It was also my first project outside univeristy, intended to boost my current po
 * 'Exit' or 'Ctrl-Q' to Exit the application
 
 ## Status
-Project is: Completed
+Project is: **Completed**
 
 ## Contact
 Feel free to reach me on my LinkedIn: https://www.linkedin.com/in/mahirhiro/
