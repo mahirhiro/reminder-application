@@ -31,9 +31,10 @@ It was also my first project outside univeristy, intended to boost my current po
 2. Type git clone https://github.com/mahirhiro/todo-list-application.git
 3. With your IDE open the pom.xml file as a project
 4. Simply right click on the java sources folder ("java" under src/) and select Mark Directory As > Sources Root (see screenshot below)
-
+<img width="360" alt="blank" src="https://user-images.githubusercontent.com/49659324/61996989-f6525d80-b0ab-11e9-8d42-d6e56ac5e32c.png">
 5. Go to File -> Project structure -> Modules -> Dependencies -> '+' -> add 'jcalendar-1.4.jar' file (see screenshot below)
-6. Click run 😉 & enjoy !
+<img width="360" alt="Screen Shot 2019-07-27 at 8 13 32 PM" src="https://user-images.githubusercontent.com/49659324/61996937-63b1be80-b0ab-11e9-8b2b-6e44d3bba38b.png">
+6. Click run & enjoy! 😉
 
 
 ## Features
