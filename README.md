@@ -63,4 +63,4 @@ Please contribute using [Github Flow](https://guides.github.com/introduction/flo
 6. Thanks 😉!
 
 ## Contact
-Feel free to reach me on my [LinkedIn](https://www.linkedin.com/in/mahirhiro/)
+Don't hesitate to ask me whatever you want. Feel free to reach me on my [LinkedIn](https://www.linkedin.com/in/mahirhiro/) 😃 
