@@ -1,12 +1,18 @@
 
-# ToDo-List-application [![Build Status](https://travis-ci.com/mahirhiro/todo-list-application.svg?branch=master)](https://travis-ci.com/mahirhiro/todo-list-application)
+<p align="center">
+	<img width="240" height="130" src="https://user-images.githubusercontent.com/49659324/61997339-4b44a280-b0b1-11e9-949a-ca1209fecf5a.png"> 
+	</p> 
 
-## Table of contents
+
+## Table of contents [![Build Status](https://travis-ci.com/mahirhiro/todo-list-application.svg?branch=master)](https://travis-ci.com/mahirhiro/todo-list-application)
 * [General info](#general-info)
 * [Screenshots](#screenshots)
 * [Features](#features)
+* [How to run it?](#how-to-run-it)
 * [Status](#status)
+* [Contributing](#contributing)
 * [Contact](#contact)
+
 
 ## General info
 This project was intented to help me get more familar with the MVC pattern and using JAVA as the medium of doing so.
@@ -25,6 +31,17 @@ It was also my first project outside univeristy, intended to boost my current po
 * Here you can see how the events were sorted by the priority number
 <img width="560" alt="Screen Shot 2019-07-25 at 1 05 39 AM" src="https://user-images.githubusercontent.com/49659324/61829118-4dbcb780-ae79-11e9-8c51-26464418e8dd.png">
 
+## How to run it?
+1. Go to where to want to save the file on your computer with your terminal
+2. Type git clone https://github.com/mahirhiro/todo-list-application.git
+3. With your IDE open the pom.xml file as a project
+4. Simply right click on the java sources folder ("java" under src/) and select Mark Directory As > Sources Root (see screenshot below)
+<img width="360" alt="blank" src="https://user-images.githubusercontent.com/49659324/61996989-f6525d80-b0ab-11e9-8d42-d6e56ac5e32c.png">
+5. Go to File -> Project structure -> Modules -> Dependencies -> '+' -> add 'jcalendar-1.4.jar' file (see screenshot below)
+<img width="360" alt="Screen Shot 2019-07-27 at 8 13 32 PM" src="https://user-images.githubusercontent.com/49659324/61996937-63b1be80-b0ab-11e9-8b2b-6e44d3bba38b.png">
+6. Click run & enjoy! 😉
+
+
 ## Features
 * 'Add a Task' or 'Ctrl-A' to add an event
 * 'Edit a Task' or 'Ctrl-E' when a row is selected to edit a column of an event
@@ -38,5 +55,15 @@ It was also my first project outside univeristy, intended to boost my current po
 ## Status
 Project is: **Completed**
 
+## Contributing
+Please contribute using [Github Flow](https://guides.github.com/introduction/flow/). Create a branch, add commits.
+
+1. Fork it: git clone https://github.com/mahirhiro/todo-list-application.git
+2. Create your feature branch: git checkout -b my-new-feature
+3. Commit your changes: git commit -am 'Add some feature'
+4. Push to the branch: git push origin my-new-feature
+5. Submit a pull request
+6. Thanks 😉!
+
 ## Contact
-Feel free to reach me on my LinkedIn: https://www.linkedin.com/in/mahirhiro/
+Don't hesitate to ask me whatever you want. Feel free to reach me on my [LinkedIn](https://www.linkedin.com/in/mahirhiro/) 😃 
