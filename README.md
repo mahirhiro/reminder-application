@@ -7,7 +7,9 @@
 * [Features](#features)
 * [How to run it?](#how-to-run-it)
 * [Status](#status)
+* [Contributing](#contributing)
 * [Contact](#contact)
+
 
 ## General info
 This project was intented to help me get more familar with the MVC pattern and using JAVA as the medium of doing so.
@@ -50,5 +52,15 @@ It was also my first project outside univeristy, intended to boost my current po
 ## Status
 Project is: **Completed**
 
+## Contributing
+Please contribute using [Github Flow](https://guides.github.com/introduction/flow/). Create a branch, add commits.
+
+1. Fork it: git clone https://github.com/mahirhiro/todo-list-application.git
+2. Create your feature branch: git checkout -b my-new-feature
+3. Commit your changes: git commit -am 'Add some feature'
+4. Push to the branch: git push origin my-new-feature
+5. Submit a pull request
+6. Thanks 😉!
+
 ## Contact
-Feel free to reach me on my LinkedIn: https://www.linkedin.com/in/mahirhiro/
+Feel free to reach me on my [LinkedIn](https://www.linkedin.com/in/mahirhiro/)
