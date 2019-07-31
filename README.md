@@ -19,6 +19,8 @@ This project was intented to help me get more familar with the MVC pattern and u
 It was also my first project outside univeristy, intended to boost my current portfolio.
 	
 ## Screenshots
+<img width="560" alt="gif" src="https://user-images.githubusercontent.com/49659324/62212376-a1675d80-b3b1-11e9-8f61-10f49a4050de.gif">
+
 * This is how the user sees the added events
 <img width="560" alt="Screen Shot 2019-07-25 at 1 05 27 AM" src="https://user-images.githubusercontent.com/49659324/61829120-4e554e00-ae79-11e9-87be-c9a37a6219eb.png">
 
